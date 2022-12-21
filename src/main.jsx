@@ -1,15 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import AuthService from './service/auth.service'
-import socket from './service/socket'
+import AuthService from './services/auth.service'
+import socket from './services/socket'
 import "./styles/GlobalStyles.css"
 
 const authService = AuthService()
 
 socket.on("connect", () => {
     if (authService.isUserLogged()) {
-        authService.login(authService.getCurrentUser().user)
+        authService.reconnect(authService.getCurrentUser().user)
     }
 })
 

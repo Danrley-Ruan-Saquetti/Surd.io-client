@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import AuthService from "./service/auth.service.js"
+import AuthService from "./services/auth.service.js"
 
 const authService = AuthService()
 
