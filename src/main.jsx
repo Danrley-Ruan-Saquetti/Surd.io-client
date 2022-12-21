@@ -1,11 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+import AuthService from './service/auth.service'
 import socket from './service/socket'
 import "./styles/GlobalStyles.css"
 
+const authService = AuthService()
+
 socket.on("connect", () => {
-    socket.on("hello", msg => { console.log(msg); console.log("") })
+    if (authService.isUserLogged()) {
+        authService.login(authService.getCurrentUser().user)
+    }
 })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
