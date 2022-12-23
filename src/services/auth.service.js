@@ -1,5 +1,5 @@
 import ControlLocalStorage from "../util/ControlLocalStorage.js"
-import socket from "./../services/socket.js"
+import { socket } from "./../services/socket.js"
 
 const controlLocalStorage = ControlLocalStorage()
 const KEY = "user"
@@ -29,7 +29,7 @@ export default function AuthService() {
         })
     }
 
-    const reconnect = () => {
+    const reconnect = (res = () => {}) => {
         socket.emit("auth/login/reconnect", {...getToken(), _id: getCurrentUser().user._id })
 
         socket.on("auth/login/reconnect/res", (data) => {
@@ -39,6 +39,8 @@ export default function AuthService() {
             if (data.error) {
                 removeItem(data.user)
             }
+
+            res(data)
         })
     }
 

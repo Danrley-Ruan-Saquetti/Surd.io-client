@@ -1,7 +1,8 @@
 import io from "socket.io-client"
 import AuthService from "./auth.service.js"
 
-const socket = io("http://localhost:8000")
+export const socket = io("http://localhost:8000")
+export const USER_AUTHENTICATE = { isAuthenticate: false }
 
 const authService = AuthService()
 
@@ -11,8 +12,6 @@ socket.on("connect", () => {
     }
 })
 
-socket.on("disconnect", () => {
-    console.log({ error: { msg: "Host disconnected", system: true } });
+socket.on("users/current-update", (data) => {
+    authService.updateItem(data.user)
 })
-
-export default socket
