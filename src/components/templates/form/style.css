@@ -1,0 +1,33 @@
+.form-content,
+input {
+    letter-spacing: .1rem;
+}
+.form-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45rem;
+    padding: 5rem;
+    background-color: #555555;
+}
+.info-form {
+    text-align: center;
+}
+.input-box-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.link-form-content {
+    display: flex;
+    justify-content: space-between;
+}
+.bt-content {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+}

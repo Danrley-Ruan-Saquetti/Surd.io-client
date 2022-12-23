@@ -5,6 +5,7 @@ const controlLocalStorage = ControlLocalStorage()
 const KEY = "user"
 
 export default function AuthService() {
+
     // Auth
     const register = (req, res = () => {}) => {
         socket.emit("auth/register", req)
@@ -29,19 +30,20 @@ export default function AuthService() {
     }
 
     const reconnect = () => {
-        socket.emit("auth/login/reconnect", getCurrentUser().user)
+        socket.emit("auth/login/reconnect", {...getToken(), _id: getCurrentUser().user._id })
 
         socket.on("auth/login/reconnect/res", (data) => {
             if (data.success) {
                 updateItem(data.user)
             }
+            if (data.error) {
+                removeItem(data.user)
+            }
         })
     }
 
     const logout = (res = () => {}) => {
-        const { user } = getCurrentUser()
-
-        socket.emit("auth/logout", user)
+        socket.emit("auth/logout", getToken())
 
         socket.on("auth/logout/res", (data) => {
             if (data.success) {
@@ -70,6 +72,19 @@ export default function AuthService() {
         return { user, valueOf: user != null }
     }
 
+    const getToken = () => {
+        const responseUser = getCurrentUser()
+
+
+        if (!responseUser.valueOf) { return { authToken: null } }
+
+        const { user } = responseUser
+
+        const authToken = `Bearer ${user.authToken}`
+
+        return { authToken }
+    }
+
     const isUserLogged = () => {
         return getCurrentUser().valueOf
     }
@@ -84,5 +99,6 @@ export default function AuthService() {
         updateItem,
         getCurrentUser,
         isUserLogged,
+        getToken,
     }
 }

@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import AuthService from "../../services/auth.service.js"
+import AuthService from "../services/auth.service.js"
 
 const authService = AuthService()
 
-export default function AuthLoginSession() {
-    const [data, setData] = useState({ login: "", password: "" })
+export default function AuthRegisterSession() {
+    const [data, setData] = useState({ username: "", email: "", password: "" })
     const [response, setResponse] = useState({})
     const navigate = useNavigate()
 
@@ -13,11 +13,11 @@ export default function AuthLoginSession() {
         navigate(url)
     }
 
-    const login = (ev) => {
+    const register = (ev) => {
         ev.preventDefault()
         setResponse({})
 
-        authService.login(data, (res) => {
+        authService.register(data, (res) => {
             if (res.success) {
                 redirectPage("/home")
             }
@@ -34,9 +34,10 @@ export default function AuthLoginSession() {
     return (
         <>
             <form action="">
-                <input onChange={handleData} type="text" name="login" id="input-login" placeholder="Inform the username or e-mail" required="required" /><br />
+                <input onChange={handleData} type="text" name="username" id="input-username" placeholder="Inform the username" required="required" /><br />
+                <input onChange={handleData} type="text" name="email" id="input-email" placeholder="Inform the e-mail" required="required" /><br />
                 <input onChange={handleData} type="password" name="password" id="input-password" placeholder="Inform the password" required="required" /><br />
-                <button type="submit" onClick={login}>Login</button><br />
+                <button type="submit" onClick={register}>Register</button><br />
             </form>
             {response.error ? (<div>Error: {response.error.msg}</div>) : <></>}
             {response.success ? (<div>Success: {response.success.msg}</div>) : <></>}

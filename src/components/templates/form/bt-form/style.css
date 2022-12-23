@@ -1,0 +1,13 @@
+.bt-content button {
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: #fff;
+    font-size: 1.7rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .4);
+    transition: .2s;
+}
+.bt-content button:hover {
+    background-color: #fff;
+    color: #000;
+}
