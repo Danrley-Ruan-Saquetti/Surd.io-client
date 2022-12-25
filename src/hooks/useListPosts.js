@@ -19,11 +19,22 @@ export default function useListPosts() {
         getPosts()
 
         socket.on("$/chat/send-post", (data) => {
+            console.log(data);
             getPosts()
+        })
+
+        socket.on("auth/login/reconnect/res", () => {
+            setTimeout(getPosts, 0)
+        })
+
+        socket.on("auth/login/res", () => {
+            setTimeout(getPosts, 0)
         })
 
         return () => {
             socket.off("$/chat/send-post")
+            socket.off("auth/login/reconnect/res")
+            socket.off("auth/login/res")
         }
     }, [])
 

@@ -14,7 +14,7 @@ export default function useListUsers(props = { isLobby: false }) {
                     setUsers(res.users)
                 }
             },
-            isLobby: props.isLobby
+            ...props
         })
     }
 
@@ -25,12 +25,20 @@ export default function useListUsers(props = { isLobby: false }) {
         socket.on("$/users/disconnected", (data) => {
             getUsers()
         })
+        socket.on("auth/login/reconnect/res", () => {
+            setTimeout(getUsers, 0)
+        })
+        socket.on("auth/login/res", () => {
+            setTimeout(getUsers, 0)
+        })
 
         getUsers()
 
         return () => {
             socket.off("$/users/connected")
-            socket.off("$/users/disconnected")
+            socket.off("$/users/connected")
+            socket.off("auth/login/reconnect/res")
+            socket.off("auth/login/res")
         }
     }, [])
 

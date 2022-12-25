@@ -12,6 +12,6 @@ socket.on("connect", () => {
     }
 })
 
-socket.on("users/current-update", (data) => {
+socket.on("$/users/current-update", (data) => {
     authService.updateItem(data.user)
 })

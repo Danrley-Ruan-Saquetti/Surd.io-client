@@ -24,8 +24,17 @@ export default function UserService() {
         })
     }
 
+    const sendPost = (req, res = (r) => {}) => {
+        socket.emit("chat/send-post", {...authService.getToken(), body: req.body })
+
+        socket.on("chat/send-post/res", (data) => {
+            res(data)
+        })
+    }
+
     return {
         getUsers,
-        getPosts
+        getPosts,
+        sendPost
     }
 }

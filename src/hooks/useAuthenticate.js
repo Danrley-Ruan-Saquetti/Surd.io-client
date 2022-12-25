@@ -10,6 +10,11 @@ export default function useAuthenticate() {
             console.log("Host connected");
         })
 
+        socket.on("auth/login/res", () => {
+            setAuthenticate(true)
+            console.log("Host connected!");
+        })
+
         socket.on("disconnect", () => {
             setAuthenticate(false)
             console.log("Host disconnected");
@@ -17,6 +22,7 @@ export default function useAuthenticate() {
 
         return () => {
             socket.off("auth/login/reconnect/res")
+            socket.off("auth/login/res")
             socket.off("disconnect")
         }
     }, [])
