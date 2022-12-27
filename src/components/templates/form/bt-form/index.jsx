@@ -1,6 +1,6 @@
 import "./style.css"
 
-export default function BTForm(props) {
+export default function BTFormTemplate(props = { type, onClick, btContent }) {
 
     return (
         <>

@@ -1,27 +1,27 @@
 import "./style.css"
 
-export default function Form(props) {
+export default function FormTemplate(props = { info, inputBoxContent, linkContent, btContent }) {
 
     return (
         <>
-            <form className="template-form" action="" method="POST" onSubmit={(ev) => {
+            <form className="t_form" action="" method="POST" onSubmit={(ev) => {
                 ev.preventDefault()
             }}>
-                <div className="info-temp_form">
+                <div className="t_form-info">
                     <h1>{props.info}</h1>
                 </div>
 
-                <div className="content-temp_input-box">
+                <div className="t_form-content-input-box">
                     {props.inputBoxContent}
                 </div>
 
                 {props.linkContent ? (<>
-                    <div className="content-link-form">
+                    <div className="t_form-content-link">
                         {props.linkContent}
                     </div>
                 </>) : (<></>)}
 
-                <div className="content-temp_bt-actions">
+                <div className="t_form-content-bt-actions">
                     {props.btContent}
                 </div>
             </form>

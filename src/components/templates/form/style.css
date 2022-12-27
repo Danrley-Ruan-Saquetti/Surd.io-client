@@ -1,8 +1,9 @@
-.form-content,
+.t_form,
 input {
     letter-spacing: .1rem;
 }
-.form-content {
+
+.t_form {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -14,19 +15,23 @@ input {
     padding: 5rem;
     background-color: #555555;
 }
-.info-form {
+
+.t_form-info {
     text-align: center;
 }
-.input-box-content {
+
+.t_form-content-input-box {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 5rem;
 }
-.link-form-content {
+
+.t_form-content-link {
     display: flex;
     justify-content: space-between;
 }
-.bt-content {
+
+.t_form-content-bt-actions {
     display: flex;
     justify-content: end;
     gap: 1rem;

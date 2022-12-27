@@ -1,6 +1,6 @@
 import "./style.css"
 
-export default function FormLink(props) {
+export default function FormLinkTemplate(props = { linkUrl, linkContent }) {
 
     return (
         <>

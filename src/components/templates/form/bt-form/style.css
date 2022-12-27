@@ -1,4 +1,4 @@
-.bt-content button {
+.t_form-content-bt-actions button {
     margin-top: 1rem;
     padding: 1rem 2rem;
     background: transparent;
@@ -7,7 +7,8 @@
     box-shadow: 0 0 1rem rgba(0, 0, 0, .4);
     transition: .2s;
 }
-.bt-content button:hover {
+
+.t_form-content-bt-actions button:hover {
     background-color: #fff;
     color: #000;
 }
