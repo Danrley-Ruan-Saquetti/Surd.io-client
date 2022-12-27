@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import UserService from "../services/user.service.js";
 import { socket } from "../services/socket.js"
+import useAuthenticate from "./useAuthenticate.js";
 
 const userService = UserService()
 
@@ -17,6 +18,8 @@ export default function useListUsers(props = { isLobby: false }) {
             ...props
         })
     }
+
+    const [isAuthenticate] = useAuthenticate(getUsers)
 
     useEffect(() => {
         socket.on("$/users/connected", (data) => {
