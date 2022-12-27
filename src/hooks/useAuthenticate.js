@@ -1,23 +1,28 @@
 import { useEffect, useState } from "react"
-import { socket, USER_AUTHENTICATE } from "../services/socket.js"
+import { socket, USER_AUTHENTICATE, updateStateAuthenticate } from "../services/socket.js"
 
-export default function useAuthenticate() {
+export default function useAuthenticate(observer = () => {}) {
     const [authenticate, setAuthenticate] = useState(USER_AUTHENTICATE.isAuthenticate)
 
+    const updateState = (value) => {
+        updateStateAuthenticate(value)
+        setAuthenticate(USER_AUTHENTICATE.isAuthenticate)
+        value && setTimeout(observer, 500)
+    }
+
     useEffect(() => {
-        socket.on("auth/login/reconnect/res", () => {
-            setAuthenticate(true)
-            console.log("Host connected");
+        observer()
+
+        socket.on("auth/login/reconnect/res", (data) => {
+            updateState(!data.error)
         })
 
-        socket.on("auth/login/res", () => {
-            setAuthenticate(true)
-            console.log("Host connected!");
+        socket.on("auth/login/res", (data) => {
+            updateState(!data.error)
         })
 
         socket.on("disconnect", () => {
-            setAuthenticate(false)
-            console.log("Host disconnected");
+            updateState(false)
         })
 
         return () => {

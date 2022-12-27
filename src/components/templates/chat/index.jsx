@@ -1,12 +1,17 @@
 import { useState } from "react"
+import useListFriends from "../../../hooks/useListFriends.js"
 import useListPosts from "../../../hooks/useListPosts.js"
 import UserService from "../../../services/user.service.js"
+import ChatLobby from "./lobby/index.jsx"
+import ChatPrivate from "./private/index.jsx"
 
 const userService = UserService()
 
 export default function Chat() {
     const [data, setPost] = useState({ body: "" })
     const [posts] = useListPosts()
+    const [friends] = useListFriends()
+    const [chatState, setChatState] = useState(null)
 
     const handleData = ({ target }) => {
         setPost({ ...data, [target.name]: target.value })
@@ -14,16 +19,12 @@ export default function Chat() {
 
     return (
         <>
-            <h2>Chat</h2>
-            {posts.length != 0 && posts.map(post => {
-                return <div key={post._id} className="posts">{post.body}</div>
+            {[...friends, { idChat: null }].map((u, i) => {
+                return <div key={u.idChat || i}><h3>{!u.idChat ? "Lobby" : u.user.username} <button onClick={() => {
+                    setChatState(u.idChat)
+                }}>Select</button> </h3></div>
             })}
-            <textarea name="body" id="input-body" cols="30" rows="10" onChange={handleData}></textarea>
-            <button onClick={(ev) => {
-                ev.preventDefault()
-
-                userService.sendPost(data)
-            }}>Send</button>
+            {!chatState ? (<><ChatLobby /></>) : (<><ChatPrivate idChat={chatState} /></>)}
         </>
     )
 }

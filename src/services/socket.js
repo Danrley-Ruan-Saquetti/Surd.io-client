@@ -12,6 +12,6 @@ socket.on("connect", () => {
     }
 })
 
-socket.on("$/users/current-update", (data) => {
-    authService.updateItem(data.user)
-})
+export const updateStateAuthenticate = (value) => {
+    USER_AUTHENTICATE.isAuthenticate = value
+}

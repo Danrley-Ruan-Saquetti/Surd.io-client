@@ -38,6 +38,7 @@ export default function AuthLoginSession() {
                 <input onChange={handleData} type="password" name="password" id="input-password" placeholder="Inform the password" required="required" /><br />
                 <button type="submit" onClick={login}>Login</button><br />
             </form>
+            <button onClick={() => redirectPage("/auth/register")}>Register</button>
             {response.error ? (<div>Error: {response.error.msg}</div>) : <></>}
             {response.success ? (<div>Success: {response.success.msg}</div>) : <></>}
         </>

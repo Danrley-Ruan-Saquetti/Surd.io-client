@@ -5,11 +5,11 @@ import useAuthenticate from "./useAuthenticate.js";
 
 const userService = UserService()
 
-export default function useListPosts() {
+export default function useListPostsPrivate(props = { idChat }) {
     const [posts, setPosts] = useState([])
 
     const getPosts = async() => {
-        userService.getPosts(data => {
+        userService.getPostsPrivate(props, data => {
             data.posts && setPosts(data.posts)
         })
     }
@@ -17,24 +17,14 @@ export default function useListPosts() {
     const [isAuthenticate] = useAuthenticate(getPosts)
 
     useEffect(() => {
-        socket.on("$/chat/send-post", (data) => {
+        getPosts()
+
+        socket.on("$/chat/private/send-post", (data) => {
             getPosts()
         })
 
-        socket.on("auth/login/reconnect/res", () => {
-            setTimeout(getPosts, 0)
-        })
-
-        socket.on("auth/login/res", () => {
-            setTimeout(getPosts, 0)
-        })
-
-        getPosts()
-
         return () => {
             socket.off("$/chat/send-post")
-            socket.off("auth/login/reconnect/res")
-            socket.off("auth/login/res")
         }
     }, [])
 
