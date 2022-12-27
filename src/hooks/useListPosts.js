@@ -20,12 +20,16 @@ export default function useListPosts() {
         socket.on("$/chat/send-post", (data) => {
             getPosts()
         })
-
         socket.on("auth/login/reconnect/res", () => {
             setTimeout(getPosts, 0)
         })
-
         socket.on("auth/login/res", () => {
+            setTimeout(getPosts, 0)
+        })
+        socket.on("$/users/connected", (data) => {
+            setTimeout(getPosts, 0)
+        })
+        socket.on("$/users/current/update", (data) => {
             setTimeout(getPosts, 0)
         })
 
@@ -35,6 +39,8 @@ export default function useListPosts() {
             socket.off("$/chat/send-post")
             socket.off("auth/login/reconnect/res")
             socket.off("auth/login/res")
+            socket.off("$/users/connected")
+            socket.off("$/users/current/update")
         }
     }, [])
 

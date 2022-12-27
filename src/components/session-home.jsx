@@ -4,8 +4,7 @@ import AuthService from "../services/auth.service.js"
 import Chat from "./templates/chat/index.jsx"
 import useCurrentUser from "./../hooks/useCurrentUser.js"
 import UserService from "../services/user.service.js"
-import useListFriends from "../hooks/useListFriends.js"
-import ChatPrivate from "./templates/chat/private/index.jsx"
+import useListServers from "../hooks/useListServers.js"
 
 const authService = AuthService()
 const userService = UserService()
@@ -13,7 +12,7 @@ const userService = UserService()
 export default function HomeSession() {
     const [currentUser] = useCurrentUser()
     const [users] = useListUsers()
-    const [friends] = useListFriends()
+    const [servers] = useListServers()
     const navigate = useNavigate()
 
     const sendInvite = (_id) => {
@@ -46,6 +45,10 @@ export default function HomeSession() {
 
     return (
         <>
+            <h1>Perfil {currentUser.username}</h1>
+            <p>Email: {currentUser.email}</p>
+            <p>Server connected: {currentUser.serverConnected}</p>
+
             <button onClick={(ev) => {
                 ev.preventDefault()
                 authService.logout((res) => {
@@ -58,10 +61,22 @@ export default function HomeSession() {
 
             {users.length != 0 && users.map(user => {
                 return <div key={user._id} className="users">{user.username} {
-                    currentUser._id != user._id ? stateFriend(user) : <></>}</div>
+                    currentUser._id != user._id ? stateFriend(user) : <></>} {user._id != currentUser._id && user.serverConnected != currentUser.serverConnected && (<><p>Playing</p></>)}<br /></div>
             })} <br /><br />
 
-            <Chat />
+            <Chat /><br />
+
+            <h3>Servers</h3>
+            {servers.length != 0 && servers.map(server => {
+                return <div key={server._id}>
+                    <p>{server.name} <span>Players online {server.playersOnline}</span></p>
+                    {currentUser.serverConnected != server._id ? (<button onClick={() => {
+                        userService.startGame({ idServer: server._id })
+                    }}>Enter server</button>) : (<><button onClick={() => {
+                        userService.quitGame({})
+                    }}>Leave</button></>)}
+                </div>
+            })}
         </>
     )
 }

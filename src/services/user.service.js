@@ -99,6 +99,32 @@ export default function UserService() {
         })
     }
 
+    // Server
+    const getServers = (res = (r) => {}) => {
+        socket.emit("servers", {...authService.getToken() })
+
+        socket.on("servers/res", (data) => {
+            res(data)
+        })
+    }
+
+    // Game
+    const startGame = (req, res = () => {}) => {
+        socket.emit("games/start", {...authService.getToken(), ...req })
+
+        socket.on("games/start/res", (data) => {
+            res(data)
+        })
+    }
+
+    const quitGame = (req, res = () => {}) => {
+        socket.emit("games/quit", {...authService.getToken(), ...req })
+
+        socket.on("games/quit/res", (data) => {
+            res(data)
+        })
+    }
+
     return {
         getUsers,
         getPosts,
@@ -111,5 +137,8 @@ export default function UserService() {
         deniedInvite,
         cancelInvite,
         removeFriendship,
+        getServers,
+        startGame,
+        quitGame
     }
 }

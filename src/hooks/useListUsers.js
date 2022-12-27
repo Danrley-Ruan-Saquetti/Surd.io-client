@@ -40,6 +40,9 @@ export default function useListUsers(props = { isLobby: false }) {
         socket.on("$/friends/remove-friendship", (data) => {
             getUsers()
         })
+        socket.on("$/users/current/update", (data) => {
+            setTimeout(getUsers, 0)
+        })
         socket.on("auth/login/reconnect/res", (data) => {
             setTimeout(getUsers, 0)
         })
@@ -51,12 +54,13 @@ export default function useListUsers(props = { isLobby: false }) {
 
         return () => {
             socket.off("$/users/connected")
-            socket.off("$/users/connected")
+            socket.off("$/users/disconnected")
             socket.off("$/friends/send-invite")
             socket.off("$/friends/accept-invite")
             socket.off("$/friends/denied-invite")
             socket.off("$/friends/cancel-invite")
             socket.off("$/friends/remove-friendship")
+            socket.off("$/users/current/update")
             socket.off("auth/login/reconnect/res")
             socket.off("auth/login/res")
         }

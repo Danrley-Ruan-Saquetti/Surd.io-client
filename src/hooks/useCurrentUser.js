@@ -12,14 +12,13 @@ export default function useCurrentUser() {
         socket.on("user/select/res", (data) => {
             setUser(data.user)
         })
-
-        socket.on("$/users/current-update", (data) => {
+        socket.on("$/users/current/update", (data) => {
             setUser(data.user)
         })
 
         return () => {
             socket.off("user/select/res")
-            socket.off("$/users/current-update")
+            socket.off("$/users/current/update")
         }
     }, [])
 
