@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import AuthService from "../services/auth.service.js"
 import { socket } from "../services/socket.js"
 import useAuthenticate from "./useAuthenticate.js"
@@ -7,21 +7,27 @@ import useLocalStorage from "./useLocalStorage.js"
 const authService = AuthService()
 
 export default function useCurrentUser() {
-    const [user, setUser] = useLocalStorage("user", authService.getCurrentUser().user)
-    const [isAuthenticate] = useAuthenticate()
+    const [, setCurrentUser] = useLocalStorage("user", authService.getCurrentUser().user)
+    const [user, setUser] = useState({ name: "Guest", serverConnected: { _id: null, name: "Server" }, _id: null })
+    const [] = useAuthenticate()
+
+    const updateCurrentUser = (u) => {
+        setUser(u)
+        setCurrentUser(u)
+    }
 
     useEffect(() => {
         socket.on("user/select/res", (data) => {
-            setUser(data.user)
+            updateCurrentUser(data.user)
         })
         socket.on("auth/login/reconnect/res", (data) => {
-            setUser(data.user)
+            updateCurrentUser(data.user)
         })
         socket.on("auth/login/res", (data) => {
-            setUser(data.user)
+            updateCurrentUser(data.user)
         })
         socket.on("$/users/current/update", (data) => {
-            setUser(data.user)
+            updateCurrentUser(data.user)
         })
 
         return () => {

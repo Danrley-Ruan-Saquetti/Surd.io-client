@@ -14,7 +14,7 @@ export default function useListPostsPrivate(props = { idChat }) {
         })
     }
 
-    const [isAuthenticate] = useAuthenticate(getPosts)
+    const [] = useAuthenticate(getPosts)
 
     useEffect(() => {
         getPosts()

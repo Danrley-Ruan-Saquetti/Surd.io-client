@@ -16,7 +16,7 @@ export default function useListFriends() {
         })
     }
 
-    const [isAuthenticate] = useAuthenticate(getFriends)
+    const [] = useAuthenticate(getFriends)
 
     useEffect(() => {
         getFriends()

@@ -15,9 +15,9 @@ export default function ChatPrivate(props = { idChat: null }) {
     return (
         <>
             {posts.length != 0 && posts.map(post => {
-                return <div key={post._id} className="posts">{!post.info ? post.user.username : "[Server]"} {post.body}</div>
+                return <div key={post._id} className="posts">{!post.info ? `${post.user.username}:` : "[Server]:"} {post.body}</div>
             })}
-            <textarea name="body" id="input-body" cols="30" rows="10" onChange={handleData}></textarea>
+            <textarea name="body" id="input-body" cols="30" rows="2" onChange={handleData}></textarea>
             <button onClick={(ev) => {
                 ev.preventDefault()
 

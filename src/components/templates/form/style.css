@@ -23,7 +23,7 @@ input {
 .t_form-content-input-box {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 3rem;
 }
 
 .t_form-content-link {

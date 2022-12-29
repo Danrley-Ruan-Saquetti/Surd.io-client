@@ -19,7 +19,7 @@ export default function useListUsers(props = { isLobby: false }) {
         })
     }
 
-    const [isAuthenticate] = useAuthenticate(getUsers)
+    const [] = useAuthenticate(getUsers)
 
     useEffect(() => {
         socket.on("$/users/connected", (data) => {
@@ -46,12 +46,6 @@ export default function useListUsers(props = { isLobby: false }) {
         socket.on("$/users/current/update", (data) => {
             setTimeout(getUsers, 0)
         })
-        socket.on("auth/login/reconnect/res", (data) => {
-            setTimeout(getUsers, 0)
-        })
-        socket.on("auth/login/res", (data) => {
-            setTimeout(getUsers, 0)
-        })
 
         getUsers()
 
@@ -64,8 +58,6 @@ export default function useListUsers(props = { isLobby: false }) {
             socket.off("$/friends/cancel-invite")
             socket.off("$/friends/remove-friendship")
             socket.off("$/users/current/update")
-            socket.off("auth/login/reconnect/res")
-            socket.off("auth/login/res")
         }
     }, [])
 

@@ -37,7 +37,7 @@ export default function AuthService() {
                 updateItem(data.user)
             }
             if (data.error) {
-                removeItem(data.user)
+                removeItem(true)
             }
 
             res(data)
@@ -57,15 +57,15 @@ export default function AuthService() {
 
     // Storage
     const createItem = (value) => {
-        return controlLocalStorage.createItem(KEY, value)
+        return controlLocalStorage.createItem(KEY, { _id: value._id, authToken: value.authToken })
     }
 
-    const removeItem = () => {
-        return controlLocalStorage.removeItem(KEY)
+    const removeItem = (clear = false) => {
+        return controlLocalStorage.removeItem(KEY, clear)
     }
 
     const updateItem = (value) => {
-        return controlLocalStorage.updateItem(KEY, value)
+        return controlLocalStorage.updateItem(KEY, { _id: value._id, authToken: value.authToken })
     }
 
     const getCurrentUser = () => {

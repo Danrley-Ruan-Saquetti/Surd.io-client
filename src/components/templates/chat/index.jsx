@@ -12,7 +12,7 @@ export default function Chat() {
     return (
         <>
             {[...friends, { idChat: null }].map((u, i) => {
-                return <div key={u.idChat || i}><h3>{!u.idChat ? `Chat ${currentUser.serverConnected}` : u.user.username} <button onClick={() => {
+                return <div key={u.idChat || i}><h3>{!u.idChat ? currentUser.serverConnected.name : `${u.user.username} - ${u.user.online ? `Online` : `Offline`}`} <button onClick={() => {
                     setChatState(u.idChat)
                 }}>Select</button> </h3></div>
             })}

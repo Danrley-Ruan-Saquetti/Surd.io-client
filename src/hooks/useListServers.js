@@ -14,7 +14,7 @@ export default function useListServers() {
         })
     }
 
-    const [isAuthenticate] = useAuthenticate(getServers)
+    const [] = useAuthenticate(getServers)
 
     useEffect(() => {
         socket.on("auth/login/reconnect/res", () => {

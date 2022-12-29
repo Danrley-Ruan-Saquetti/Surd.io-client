@@ -18,9 +18,9 @@ export default function ControlLocalStorage() {
         }
     }
 
-    const removeItem = (key) => {
+    const removeItem = (key, clear = false) => {
         try {
-            localStorage.removeItem(key)
+            !clear ? localStorage.removeItem(key) : localStorage.clear()
             return true
         } catch (err) {
             return false
