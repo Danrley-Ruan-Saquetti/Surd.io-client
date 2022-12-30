@@ -8,7 +8,7 @@ const authService = AuthService()
 
 export default function useCurrentUser() {
     const [, setCurrentUser] = useLocalStorage("user", authService.getCurrentUser().user)
-    const [user, setUser] = useState({ name: "Guest", serverConnected: { _id: null, name: "Server" }, _id: null })
+    const [user, setUser] = useState({ username: "Guest", serverConnected: { _id: null, name: "Server" }, _id: null })
     const [] = useAuthenticate()
 
     const updateCurrentUser = (u) => {

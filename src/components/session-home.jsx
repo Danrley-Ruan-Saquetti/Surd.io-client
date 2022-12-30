@@ -1,16 +1,33 @@
-import { useNavigate } from "react-router-dom"
-import useListUsers from "../hooks/useListUsers.js"
-import AuthService from "../services/auth.service.js"
-import Chat from "./templates/chat/index.jsx"
-import useCurrentUser from "./../hooks/useCurrentUser.js"
-import UserService from "../services/user.service.js"
-import useListServers from "../hooks/useListServers.js"
-
-const authService = AuthService()
-const userService = UserService()
+import Header from "./header/index.jsx"
+import Panel from "./panel/index.jsx"
+import SideBar from "./side-bar/index.jsx"
+import "./session-styles/home.css"
+import { useState } from "react"
 
 export default function HomeSession() {
-    const [currentUser] = useCurrentUser()
+    const [action, setAction] = useState("")
+
+    const updateAction = (ac = "") => {
+        setAction(ac)
+    }
+
+    return (
+        <>
+            <Header />
+            <div className="main">
+                <SideBar
+                    actionFunction={updateAction}
+                />
+                <Panel
+                    action={action}
+                />
+            </div>
+        </>
+    )
+}
+
+/*
+const [currentUser] = useCurrentUser()
     const [users] = useListUsers()
     const [servers] = useListServers()
     const navigate = useNavigate()
@@ -83,4 +100,4 @@ export default function HomeSession() {
             })}
         </>
     )
-}
+*/

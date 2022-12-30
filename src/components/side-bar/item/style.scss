@@ -1,0 +1,16 @@
+.item {
+    height: 6.5rem;
+    .action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: 3rem;
+        transition: .3s;
+        &:hover {
+            background-color: #414141;
+            cursor: pointer;
+        }
+    }
+}

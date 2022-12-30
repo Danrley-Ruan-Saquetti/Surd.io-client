@@ -17,29 +17,16 @@ export default function useListServers() {
     const [] = useAuthenticate(getServers)
 
     useEffect(() => {
-        socket.on("auth/login/reconnect/res", () => {
-            setTimeout(getServers, 0)
+        socket.on("$/users/connected", () => {
+            getServers()
         })
-        socket.on("auth/login/res", () => {
-            setTimeout(getServers, 0)
-        })
-        socket.on("$/users/current/update", (data) => {
-            setTimeout(getServers, 0)
-        })
-        socket.on("$/users/connected", (data) => {
-            setTimeout(getServers, 0)
-        })
-        socket.on("$/users/disconnected", (data) => {
-            setTimeout(getServers, 0)
+        socket.on("$/users/disconnected", () => {
+            getServers()
         })
 
         getServers()
 
         return () => {
-            socket.off("$/chat/send-post")
-            socket.off("auth/login/reconnect/res")
-            socket.off("auth/login/res")
-            socket.off("$/users/current/update")
             socket.off("$/users/connected")
             socket.off("$/users/disconnected")
         }

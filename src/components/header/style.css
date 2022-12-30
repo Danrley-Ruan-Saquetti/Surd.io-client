@@ -1,0 +1,60 @@
+.content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 5rem;
+  background-color: #222222;
+}
+.content-header .header-children {
+  width: 40%;
+}
+.content-header .header-children.logo {
+  font-size: 2.3rem;
+}
+.content-header .header-children.perfil {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  max-width: 35rem;
+}
+.content-header .header-children.perfil .perfil-info.identification {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  justify-content: end;
+}
+.content-header .header-children.perfil .perfil-info.identification .info-username {
+  font-size: 2.5rem;
+}
+.content-header .header-children.perfil .perfil-info.level {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.content-header .header-children.perfil .perfil-info.level .info-level {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.content-header .header-children.perfil .perfil-info.level .info-level .level {
+  font-size: 1.5rem;
+}
+.content-header .header-children.perfil .perfil-info.level .info-level .xp {
+  font-size: 1.3rem;
+}
+.content-header .header-children.perfil .perfil-info.level .xp-content {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #141414;
+}
+.content-header .header-children.perfil .perfil-info.level .xp-content .xp-indicator {
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  border-radius: 0.3rem;
+  background-color: #313131;
+  box-shadow: inset 0 0 1rem rgba(255, 255, 255, 0.3);
+}/*# sourceMappingURL=style.css.map */
