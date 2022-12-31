@@ -31,6 +31,12 @@
 .chat .list-posts-content .list-posts .post.other {
   padding-right: 25%;
 }
+.chat .list-posts-content .list-posts .post .post-info {
+  font-size: 1.7rem;
+}
+.chat .list-posts-content .list-posts .post .post-time {
+  font-size: 1.2rem;
+}
 .chat .fill-send-post {
   display: flex;
   gap: 1.5rem;

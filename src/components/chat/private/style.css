@@ -1,9 +1,25 @@
 .chat-friend-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
   height: 100%;
+}
+.chat-friend-content .friend-header {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #414141;
+}
+.chat-friend-content .friend-header .close-chat-private {
+  cursor: pointer;
+}
+.chat-friend-content .list-friends .friend-identification {
+  display: flex;
+  gap: 1rem;
 }
 .chat-friend-content .list-friends .friend {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   padding: 1rem 2rem;
   border-bottom: 1px solid #414141;
   cursor: pointer;

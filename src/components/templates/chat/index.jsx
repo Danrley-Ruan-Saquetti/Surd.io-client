@@ -70,7 +70,23 @@ export default function Chat(props = { isServer: true, idChat: null, posts: [{ b
                     <div className="list-posts">
                         {props.posts.map(post => {
                             return <div key={post._id} className={"post " + (!post.info ? post.user._id == user._id ? "this" : "other" : "info")}>
-                                <p>{!post.info && post.user._id != user._id && (<><span className="from">{post.user.username}: </span></>)}<span className="body">{post.body}</span></p>
+                                <p className="post-info">{props.isServer && !post.info && post.user._id != user._id && (<><span className="from">{post.user.username}: </span></>)}<span className="body">{post.body}</span></p>
+                                <p className="post-time">{!post.info && (function () {
+                                    const date = new Date(post.createAt)
+                                    const now = new Date(Date.now())
+
+                                    if (now.getFullYear() - date.getFullYear() > 0) {
+                                        return `${now.getFullYear() - date.getFullYear()} years ago`
+                                    }
+                                    if (now.getMonth() - date.getMonth() > 0) {
+                                        return `${now.getMonth() - date.getMonth()} months ago`
+                                    }
+                                    if (now.getDate() - date.getDate() > 0) {
+                                        return `${now.getDate() - date.getDate()} days ago`
+                                    }
+
+                                    return `${date.getHours()}:${date.getMinutes()}`
+                                }())}</p>
                             </div>
                         })}
                     </div>

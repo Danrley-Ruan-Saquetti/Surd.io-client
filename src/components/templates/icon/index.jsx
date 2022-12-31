@@ -1,8 +1,10 @@
-export default function Icon(props = { name: "", className: "" }) {
+import "./style.css"
+
+export default function Icon(props = { name: "", className: "", onclick }) {
 
     return (
         <>
-            <span className={"icon material-symbols-outlined " + props.className}>{props.name}</span>
+            <span onClick={() => props.onclick ? props.onclick() : () => { }} className={"icon material-symbols-outlined " + props.className}>{props.name}</span>
         </>
     )
 }

@@ -6,7 +6,7 @@ export default function Panel(props = { action: "" }) {
     return (
         <>
             <div className="panel">
-                {/* <div className="panel-action">
+                <div className="panel-action">
                     {
                         props.action &&
                         (props.action == "home" && (<><p>home</p></>)) ||
@@ -16,7 +16,7 @@ export default function Panel(props = { action: "" }) {
                         (props.action == "shop" && (<><p>shop</p></>)) ||
                         (props.action == "setting" && (<><p>setting</p></>))
                     }
-                </div> */}
+                </div>
 
                 <div className="panel-chat"><Chat /></div>
             </div>

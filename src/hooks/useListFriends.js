@@ -36,6 +36,9 @@ export default function useListFriends() {
         socket.on("auth/login/reconnect/res", () => {
             getFriends()
         })
+        socket.on("$/chat/private/send-post", () => {
+            getPosts()
+        })
 
         return () => {
             socket.off("$/friends/accept-invite")
@@ -43,6 +46,7 @@ export default function useListFriends() {
             socket.off("$/friends/connected")
             socket.off("$/friends/disconnected")
             socket.off("auth/login/reconnect/res")
+            socket.off("$/chat/private/send-post")
         }
     }, [])
 
