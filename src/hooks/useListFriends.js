@@ -21,10 +21,16 @@ export default function useListFriends() {
     useEffect(() => {
         getFriends()
 
-        socket.on("$/friends/accept-invite", (data) => {
+        socket.on("$/friends/accept-invite", () => {
             getFriends()
         })
-        socket.on("$/friends/remove-friendship", (data) => {
+        socket.on("$/friends/remove-friendship", () => {
+            getFriends()
+        })
+        socket.on("$/friends/connected", () => {
+            getFriends()
+        })
+        socket.on("$/friends/disconnected", () => {
             getFriends()
         })
         socket.on("auth/login/reconnect/res", () => {
@@ -34,6 +40,8 @@ export default function useListFriends() {
         return () => {
             socket.off("$/friends/accept-invite")
             socket.off("$/friends/remove-friendship")
+            socket.off("$/friends/connected")
+            socket.off("$/friends/disconnected")
             socket.off("auth/login/reconnect/res")
         }
     }, [])

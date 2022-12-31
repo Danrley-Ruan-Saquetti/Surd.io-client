@@ -1,1 +1,10 @@
-/*# sourceMappingURL=style.css.map */
+.chat-friend-content {
+  height: 100%;
+}
+.chat-friend-content .list-friends .friend {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #414141;
+  cursor: pointer;
+}/*# sourceMappingURL=style.css.map */

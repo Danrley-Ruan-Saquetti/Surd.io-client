@@ -24,7 +24,7 @@ export default function useListPostsPrivate(props = { idChat }) {
         })
 
         return () => {
-            socket.off("$/chat/send-post")
+            socket.off("$/chat/private/send-post")
         }
     }, [])
 

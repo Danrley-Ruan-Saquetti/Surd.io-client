@@ -6,7 +6,7 @@
         position: relative;
         overflow-y: auto;
         overflow-x: hidden;
-        height: calc(100% - 12rem);
+        height: 100%;
         .list-posts {
             position: absolute;
             display: flex;
@@ -32,8 +32,8 @@
     }
     .fill-send-post {
         display: flex;
-        gap: 2rem;
-        padding: 2rem;
+        gap: 1.5rem;
+        padding: 1.5rem;
         border-top: 1px solid #414141;
         .input-body {
             font-size: 1.5rem;

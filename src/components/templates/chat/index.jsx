@@ -8,17 +8,17 @@ import "./style.css"
 
 const userService = UserService()
 
-export default function Chat(props = { isServer: true, posts: [{ body, info, user: { username, level, _id }, _id }] }) {
+export default function Chat(props = { isServer: true, idChat: null, posts: [{ body, info, user: { username, level, _id }, _id }] }) {
     const [user] = useCurrentUser()
-    const [data, setPost] = useState({ body: "" })
+    const [data, setData] = useState({ body: "" })
 
     const handleData = ({ target }) => {
-        setPost({ ...data, [target.name]: target.value })
+        setData({ ...data, [target.name]: target.value })
     }
 
     const sendPost = () => {
-        userService.sendPostPrivate({ ...data, ...props })
-        setPost({ body: "" })
+        userService[props.isServer ? "sendPost" : "sendPostPrivate"]({ ...data, ...props })
+        setData({ body: "" })
     }
 
     const scrollDown = () => {
@@ -31,9 +31,15 @@ export default function Chat(props = { isServer: true, posts: [{ body, info, use
     const [] = useAuthenticate(scrollDown)
 
     useEffect(() => {
-        socket.on("$/chat/send-post", () => {
-            setTimeout(scrollDown, 200)
-        })
+        if (props.isServer) {
+            socket.on("$/chat/send-post", () => {
+                setTimeout(scrollDown, 200)
+            })
+        } else {
+            socket.on("$/chat/private/send-post", () => {
+                setTimeout(scrollDown, 200)
+            })
+        }
         socket.on("$/users/current/update", () => {
             setTimeout(scrollDown, 200)
         })
@@ -45,7 +51,13 @@ export default function Chat(props = { isServer: true, posts: [{ body, info, use
         setTimeout(scrollDown, 1000)
 
         return () => {
-            socket.off("$/chat/send-post")
+            if (props.isServer) {
+                socket.off("$/chat/send-post")
+
+            } else {
+                socket.off("$/chat/private/send-post")
+
+            }
             socket.off("$/users/current/update")
             socket.off("auth/login/reconnect/res")
         }
