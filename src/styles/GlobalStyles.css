@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Open Sans", "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", "Poppins", sans-serif;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font-size: 1.6rem;
-    height: 100vh;
-    overflow-x: hidden;
-    background-color: #141414;
-    color: #fff;
+  font-size: 1.6rem;
+  height: 100vh;
+  overflow-x: hidden;
+  background-color: #141414;
+  color: #fff;
 }
 
 a,
@@ -23,54 +23,83 @@ button,
 input,
 select,
 textarea {
-    outline: none;
+  outline: none;
 }
 
 button,
 input {
-    border: none;
+  border: none;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 textarea {
-    resize: none;
-    border: none;
+  resize: none;
+  border: none;
 }
 
 a {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 
 #root {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .header {
-    height: 10%;
-    min-height: 8rem;
+  height: 10%;
+  min-height: 8rem;
 }
 
 main {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    bottom: 0;
-    z-index: 5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  bottom: 0;
+  z-index: 5;
 }
 
- ::-webkit-scrollbar {
-    background: transparent;
-    width: .7rem;
-    height: .7rem;
+::-webkit-scrollbar {
+  background: transparent;
+  width: 0.7rem;
+  height: 0.7rem;
 }
 
- ::-webkit-scrollbar-thumb {
-    background-color: #3d3d3d;
-    border-radius: .5rem;
+::-webkit-scrollbar-thumb {
+  background-color: #3d3d3d;
+  border-radius: 0.5rem;
 }
+
+.aba-content {
+  display: flex;
+  border-bottom: 1px solid #414141;
+}
+.aba-content .aba {
+  padding: 1rem 2rem;
+  transition: 0.3s;
+}
+.aba-content .aba.active {
+  background-color: #414141;
+}
+
+.bt-base {
+  cursor: pointer;
+}
+
+.bt {
+  padding: 1rem 2rem;
+  background: transparent;
+  color: #fff;
+  font-size: 1.4rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+  transition: 0.2s;
+}
+.bt:hover {
+  background-color: #fff;
+  color: #000;
+}/*# sourceMappingURL=GlobalStyles.css.map */

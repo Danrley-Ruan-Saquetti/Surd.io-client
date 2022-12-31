@@ -1,0 +1,28 @@
+.aba-content {
+    display: flex;
+    border-bottom: 1px solid #414141;
+    .aba {
+        padding: 1rem 2rem;
+        transition: .3s;
+        &.active {
+            background-color: #414141;
+        }
+    }
+}
+
+.bt-base {
+    cursor: pointer;
+}
+
+.bt {
+    padding: 1rem 2rem;
+    background: transparent;
+    color: #fff;
+    font-size: 1.4rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .4);
+    transition: .2s;
+    &:hover {
+        background-color: #fff;
+        color: #000;
+    }
+}

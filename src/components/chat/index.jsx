@@ -13,7 +13,7 @@ export default function Chat() {
     return (
         <>
             <div className="chat-content">
-                <div className="chat-aba">
+                <div className="aba-content chat-aba">
                     <div onClick={() => toggleChatServer(true)} className={"aba aba-lobby " + (isServer ? "active" : "")}>Server</div>
                     <div onClick={() => toggleChatServer(false)} className={"aba aba-friend " + (!isServer ? "active" : "")}>Friends</div>
                 </div>

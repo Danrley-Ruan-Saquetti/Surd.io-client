@@ -31,8 +31,8 @@
         }
         &.left {
             bottom: 50%;
-            left: -130%;
-            transform: translateY(-50%);
+            left: -490%;
+            transform: translateY(50%);
         }
     }
     &:hover {
@@ -84,9 +84,9 @@
 
 @keyframes slide-left {
     from {
-        left: -120%;
+        left: -480%;
     }
     to {
-        left: -130%;
+        left: -490%;
     }
 }

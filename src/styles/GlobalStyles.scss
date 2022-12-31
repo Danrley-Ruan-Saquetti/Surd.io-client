@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", "Poppins", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: #141414;
+    color: #fff;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+    outline: none;
+}
+
+button,
+input {
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+textarea {
+    resize: none;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#root {
+    width: 100vw;
+    height: 100vh;
+}
+
+.header {
+    height: 10%;
+    min-height: 8rem;
+}
+
+main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    bottom: 0;
+    z-index: 5;
+}
+
+ ::-webkit-scrollbar {
+    background: transparent;
+    width: .7rem;
+    height: .7rem;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background-color: #3d3d3d;
+    border-radius: .5rem;
+}
+
+@import 'templates'
