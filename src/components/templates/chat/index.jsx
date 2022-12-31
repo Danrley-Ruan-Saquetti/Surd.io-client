@@ -1,22 +1,96 @@
+import { useEffect } from "react"
 import { useState } from "react"
+import useAuthenticate from "../../../hooks/useAuthenticate"
 import useCurrentUser from "../../../hooks/useCurrentUser.js"
-import useListFriends from "../../../hooks/useListFriends.js"
-import ChatLobby from "./lobby/index.jsx"
-import ChatPrivate from "./private/index.jsx"
+import { socket } from "../../../services/socket"
+import UserService from "../../../services/user.service"
+import "./style.css"
 
-export default function Chat() {
-    const [currentUser] = useCurrentUser()
-    const [friends] = useListFriends()
-    const [chatState, setChatState] = useState(null)
+const userService = UserService()
+
+export default function Chat(props = { isServer: true, posts: [{ body, info, user: { username, level, _id }, _id }] }) {
+    const [user] = useCurrentUser()
+    const [data, setPost] = useState({ body: "" })
+
+    const handleData = ({ target }) => {
+        setPost({ ...data, [target.name]: target.value })
+    }
+
+    const sendPost = () => {
+        userService.sendPostPrivate({ ...data, ...props })
+        setPost({ body: "" })
+    }
+
+    const scrollDown = () => {
+        const tag = document.getElementById("list-posts-content")
+        if (!tag) { return }
+
+        tag.scrollTop = tag.scrollHeight
+    }
+
+    const [] = useAuthenticate(scrollDown)
+
+    useEffect(() => {
+        socket.on("$/chat/send-post", () => {
+            setTimeout(scrollDown, 200)
+        })
+        socket.on("$/users/current/update", () => {
+            setTimeout(scrollDown, 200)
+        })
+        socket.on("auth/login/reconnect/res", () => {
+            setTimeout(scrollDown, 200)
+        })
+
+        setTimeout(scrollDown, 500)
+        setTimeout(scrollDown, 1000)
+
+        return () => {
+            socket.off("$/chat/send-post")
+            socket.off("$/users/current/update")
+            socket.off("auth/login/reconnect/res")
+        }
+    }, [])
 
     return (
         <>
-            {[...friends, { idChat: null }].map((u, i) => {
-                return <div key={u.idChat || i}><h3>{!u.idChat ? currentUser.serverConnected.name : `${u.user.username} - ${u.user.online ? `Online` : `Offline`}`} <button onClick={() => {
-                    setChatState(u.idChat)
-                }}>Select</button> </h3></div>
-            })}
-            {!chatState ? (<><ChatLobby /></>) : (<><ChatPrivate idChat={chatState} /></>)}
+            <div className={"chat chat-" + (props.isServer ? "server" : "friend")}>
+                <div id="list-posts-content" className="list-posts-content">
+                    <div className="list-posts">
+                        {props.posts.map(post => {
+                            return <div key={post._id} className={"post " + (!post.info ? post.user._id == user._id ? "this" : "other" : "info")}>
+                                <p>{!post.info && post.user._id != user._id && (<><span className="from">{post.user.username}: </span></>)}<span className="body">{post.body}</span></p>
+                            </div>
+                        })}
+                    </div>
+                </div>
+                <div className="fill-send-post">
+                    <textarea name="body" className="input-body" cols="30" rows="1" onChange={handleData} value={data.body} required="required"></textarea>
+                    <button className="bt-send-post" onClick={() => sendPost()}>Send</button>
+                </div>
+            </div>
         </>
     )
 }
+
+// import { useState } from "react"
+// import useCurrentUser from "../../../hooks/useCurrentUser.js"
+// import useListFriends from "../../../hooks/useListFriends.js"
+// import ChatLobby from "./lobby/index.jsx"
+// import ChatPrivate from "./private/index.jsx"
+
+// export default function Chat() {
+//     const [currentUser] = useCurrentUser()
+//     const [friends] = useListFriends()
+//     const [chatState, setChatState] = useState(null)
+
+//     return (
+//         <>
+//             {[...friends, { idChat: null }].map((u, i) => {
+//                 return <div key={u.idChat || i}><h3>{!u.idChat ? currentUser.serverConnected.name : `${u.user.username} - ${u.user.online ? `Online` : `Offline`}`} <button onClick={() => {
+//                     setChatState(u.idChat)
+//                 }}>Select</button> </h3></div>
+//             })}
+//             {!chatState ? (<><ChatLobby /></>) : (<><ChatPrivate idChat={chatState} /></>)}
+//         </>
+//     )
+// }

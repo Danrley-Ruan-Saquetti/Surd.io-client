@@ -21,7 +21,8 @@ body {
 a,
 button,
 input,
-select {
+select,
+textarea {
     outline: none;
 }
 
@@ -32,6 +33,11 @@ input {
 
 button {
     cursor: pointer;
+}
+
+textarea {
+    resize: none;
+    border: none;
 }
 
 a {

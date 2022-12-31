@@ -5,8 +5,8 @@ import UserService from "../../../../services/user.service.js"
 const userService = UserService()
 
 export default function ChatPrivate(props = { idChat: null }) {
-    const [data, setPost] = useState({ body: "" })
     const [posts] = useListPostsPrivate(props)
+    const [data, setPost] = useState({ body: "" })
 
     const handleData = ({ target }) => {
         setPost({ ...data, [target.name]: target.value })

@@ -17,10 +17,13 @@ export default function useListPosts() {
     const [] = useAuthenticate(getPosts)
 
     useEffect(() => {
-        socket.on("$/chat/send-post", (data) => {
+        socket.on("$/chat/send-post", () => {
             getPosts()
         })
-        socket.on("$/users/current/update", (data) => {
+        socket.on("$/users/current/update", () => {
+            getPosts()
+        })
+        socket.on("auth/login/reconnect/res", () => {
             getPosts()
         })
 
@@ -29,6 +32,7 @@ export default function useListPosts() {
         return () => {
             socket.off("$/chat/send-post")
             socket.off("$/users/current/update")
+            socket.off("auth/login/reconnect/res")
         }
     }, [])
 

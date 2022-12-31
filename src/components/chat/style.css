@@ -1,0 +1,15 @@
+.chat-content {
+  width: 100%;
+  height: 100%;
+}
+.chat-content .chat-aba {
+  display: flex;
+  border-bottom: 1px solid #414141;
+}
+.chat-content .chat-aba .aba {
+  padding: 1rem 2rem;
+  transition: 0.3s;
+}
+.chat-content .chat-aba .aba.active {
+  background-color: #414141;
+}/*# sourceMappingURL=style.css.map */

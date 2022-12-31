@@ -1,0 +1,19 @@
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 7rem;
+  gap: 5rem;
+}
+.panel .panel-action {
+  width: 55%;
+  height: 100%;
+  background-color: #222222;
+}
+.panel .panel-chat {
+  width: 45%;
+  height: 100%;
+  max-height: 100%;
+  background-color: #222222;
+}/*# sourceMappingURL=style.css.map */

@@ -17,7 +17,6 @@ export default function ChatLobby() {
             {posts.length != 0 && posts.map(post => {
                 return <div key={post._id} className="posts">{!post.info ? `${post.user.username}:` : "[Server]:"} {post.body}</div>
             })}
-            <br />
             <textarea name="body" id="input-body" cols="30" rows="2" onChange={handleData}></textarea>
             <button onClick={(ev) => {
                 ev.preventDefault()
