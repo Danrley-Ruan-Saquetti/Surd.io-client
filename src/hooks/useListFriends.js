@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import UserService from "../services/user.service.js";
+import { UserService } from "../services/user.service.js";
 import { socket } from "../services/socket.js"
 import useAuthenticate from "./useAuthenticate.js";
 

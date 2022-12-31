@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import AuthService from "../../services/auth.service.js"
+import { AuthService } from "../../services/auth.service.js"
 import BTFormTemplate from "../templates/form/bt-form/index.jsx"
 import FormLinkTemplate from "../templates/form/form-link/index.jsx"
 import FormTemplate from "../templates/form/index.jsx"

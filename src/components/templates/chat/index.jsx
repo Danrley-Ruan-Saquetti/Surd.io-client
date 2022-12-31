@@ -3,7 +3,7 @@ import { useState } from "react"
 import useAuthenticate from "../../../hooks/useAuthenticate"
 import useCurrentUser from "../../../hooks/useCurrentUser.js"
 import { socket } from "../../../services/socket"
-import UserService from "../../../services/user.service"
+import { UserService } from "../../../services/user.service"
 import "./style.css"
 
 const userService = UserService()

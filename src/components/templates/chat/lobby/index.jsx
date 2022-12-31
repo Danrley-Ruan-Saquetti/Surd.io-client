@@ -1,6 +1,6 @@
 import { useState } from "react"
 import useListPosts from "../../../../hooks/useListPosts.js"
-import UserService from "../../../../services/user.service.js"
+import { UserService } from "../../../../services/user.service.js"
 
 const userService = UserService()
 

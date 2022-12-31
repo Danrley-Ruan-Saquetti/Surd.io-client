@@ -4,7 +4,9 @@ import { socket } from "./../services/socket.js"
 const controlLocalStorage = ControlLocalStorage()
 const KEY = "user"
 
-export default function AuthService() {
+export const currentUser = { user: { username: "Guest", serverConnected: { _id: null, name: "Server" }, _id: null, level: 1, xp: 0, xpLevelUp: 0 } }
+
+export function AuthService() {
 
     // Auth
     const register = (req, res = () => {}) => {
@@ -57,6 +59,7 @@ export default function AuthService() {
 
     // Storage
     const createItem = (value) => {
+        currentUser.user = value
         return controlLocalStorage.createItem(KEY, { _id: value._id, authToken: value.authToken })
     }
 
@@ -65,6 +68,7 @@ export default function AuthService() {
     }
 
     const updateItem = (value) => {
+        currentUser.user = value
         return controlLocalStorage.updateItem(KEY, { _id: value._id, authToken: value.authToken })
     }
 

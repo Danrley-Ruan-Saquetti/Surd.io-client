@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { socket } from "../services/socket.js";
-import UserService from "../services/user.service.js"
+import { UserService } from "../services/user.service.js"
 import useAuthenticate from "./useAuthenticate.js";
 
 const userService = UserService()

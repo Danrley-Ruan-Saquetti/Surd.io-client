@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import useCurrentUser from "./hooks/useCurrentUser.js"
-import AuthService from "./services/auth.service.js"
+import { AuthService } from "./services/auth.service.js"
 
 const authService = AuthService()
 

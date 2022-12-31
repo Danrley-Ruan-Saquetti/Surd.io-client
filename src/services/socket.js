@@ -1,5 +1,5 @@
 import io from "socket.io-client"
-import AuthService from "./auth.service.js"
+import { AuthService } from "./auth.service.js"
 
 export const socket = io("http://localhost:8000")
 export const USER_AUTHENTICATE = { isAuthenticate: false }

@@ -1,7 +1,7 @@
-import AuthService from "./auth.service.js"
+import { AuthService } from "./auth.service.js"
 import { socket } from "./socket.js"
 
-export default function UserService() {
+export function UserService() {
     const authService = AuthService()
 
     // User
