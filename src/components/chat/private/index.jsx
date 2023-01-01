@@ -1,26 +1,28 @@
 import { useState } from "react"
 import useListFriends from "../../../hooks/useListFriends"
-import SubChat from "./chat"
-import Icon from "../../templates/icon"
-import "./style.css"
-import { useEffect } from "react"
 import useCurrentUser from "../../../hooks/useCurrentUser"
+import Icon from "../../templates/icon"
+import SubChat from "./chat"
+import "./style.css"
 
 export default function ChatPrivate() {
     const [user] = useCurrentUser()
     const [friends] = useListFriends()
-    const [friendSelected, setFriendSelected] = useState(null)
+    const [idChatSelected, setIdChatSelected] = useState(null)
 
-    const toggleChat = (friend = null) => {
-        setFriendSelected(friend)
+    const toggleChat = (idChat = null) => {
+        setIdChatSelected(idChat)
     }
 
-    useEffect(() => {
-        friendSelected && friends.length != 0 && friends.map(friend => {
-            if (friend._id != friendSelected._id) { return }
-            friendSelected = friend
-        })
-    }, [])
+    const findFriendByIdChat = ({ idChat }) => {
+        if (!idChat) { return null }
+
+        const friend = friends.find(friend => friend.idChat == idChat)
+
+        return friend
+    }
+
+    const friendSelected = findFriendByIdChat({ idChat: idChatSelected })
 
     return (
         <>
@@ -29,7 +31,7 @@ export default function ChatPrivate() {
                     (<>
                         <div className="list-friends">
                             {friends.length != 0 && friends.map(friend => {
-                                return <div key={friend._id} className="friend" onClick={() => toggleChat(friend)}>
+                                return <div key={friend._id} className="friend" onClick={() => toggleChat(friend.idChat)}>
                                     <div className="friend-identification">
                                         <span className="friend-username">{friend.user.username}</span>
                                         <span className="friend-status">{friend.user.online ? "Online" : "Offline"}</span>
@@ -49,7 +51,7 @@ export default function ChatPrivate() {
                             <span className="friend-status">{friendSelected.user.online ? "Online" : "Offline"}</span>
                         </div>
                         <SubChat
-                            idChat={friendSelected.idChat}
+                            idChat={idChatSelected}
                         />
                     </>)
                 }

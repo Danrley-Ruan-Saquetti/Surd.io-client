@@ -12,8 +12,6 @@ export default function useCurrentUser() {
     const updateCurrentUser = (data) => {
         if (!data || !data.user) { return }
 
-        console.log(data);
-
         setUser(data.user)
         setCurrentUser(data.user)
         currentUser.user = data.user
