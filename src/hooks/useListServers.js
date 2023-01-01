@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { socket } from "../services/socket.js";
 import { UserService } from "../services/user.service.js"
-import useAuthenticate from "./useAuthenticate.js";
+import UseEventsUsers from "./useEventsUsers.jsx";
 
 const userService = UserService()
 
@@ -14,22 +13,18 @@ export default function useListServers() {
         })
     }
 
-    const [] = useAuthenticate(getServers)
+    const [] = UseEventsUsers({
+        observer: getServers,
+        events: [
+            "$/users/connected",
+            "$/users/disconnected",
+            "$/users/current/update",
+            "$/users/current/update/serverConnected"
+        ]
+    })
 
     useEffect(() => {
-        socket.on("$/users/connected", () => {
-            getServers()
-        })
-        socket.on("$/users/disconnected", () => {
-            getServers()
-        })
-
         getServers()
-
-        return () => {
-            socket.off("$/users/connected")
-            socket.off("$/users/disconnected")
-        }
     }, [])
 
     return [servers]

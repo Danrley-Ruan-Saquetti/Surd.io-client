@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { socket } from "../services/socket.js"
 import { UserService } from "../services/user.service.js"
-import useAuthenticate from "./useAuthenticate.js";
+import UseEventsPosts from "./useEventsPosts.jsx";
+import UseEventsUsers from "./useEventsUsers.jsx";
 
 const userService = UserService()
 
@@ -14,26 +14,21 @@ export default function useListPosts() {
         })
     }
 
-    const [] = useAuthenticate(getPosts)
+    const [] = UseEventsUsers({
+        observer: getPosts,
+        events: [
+            "$/users/current/update/serverConnected"
+        ]
+    })
+    const [] = UseEventsPosts({
+        observer: getPosts,
+        events: [
+            "$/chat/send-post"
+        ]
+    })
 
     useEffect(() => {
-        socket.on("$/chat/send-post", () => {
-            getPosts()
-        })
-        socket.on("$/users/current/update", () => {
-            getPosts()
-        })
-        socket.on("auth/login/reconnect/res", () => {
-            getPosts()
-        })
-
         getPosts()
-
-        return () => {
-            socket.off("$/chat/send-post")
-            socket.off("$/users/current/update")
-            socket.off("auth/login/reconnect/res")
-        }
     }, [])
 
     return [posts]

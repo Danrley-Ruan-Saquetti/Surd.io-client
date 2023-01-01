@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { UserService } from "../services/user.service.js";
-import { socket } from "../services/socket.js"
-import useAuthenticate from "./useAuthenticate.js";
+import UseEventsFriends from "./useEventsFriends.jsx";
+import UseEventsPosts from "./useEventsPosts.jsx";
 
 const userService = UserService()
 
@@ -16,38 +16,24 @@ export default function useListFriends() {
         })
     }
 
-    const [] = useAuthenticate(getFriends)
+    const [] = UseEventsPosts({
+        observer: getFriends,
+        events: [
+            "$/chat/private/send-post"
+        ]
+    })
+    const [] = UseEventsFriends({
+        observer: getFriends,
+        events: [
+            "$/friends/accept-invite",
+            "$/friends/remove-friendship",
+            "$/friends/connected",
+            "$/friends/disconnected"
+        ]
+    })
 
     useEffect(() => {
         getFriends()
-
-        socket.on("$/friends/accept-invite", () => {
-            getFriends()
-        })
-        socket.on("$/friends/remove-friendship", () => {
-            getFriends()
-        })
-        socket.on("$/friends/connected", () => {
-            getFriends()
-        })
-        socket.on("$/friends/disconnected", () => {
-            getFriends()
-        })
-        socket.on("auth/login/reconnect/res", () => {
-            getFriends()
-        })
-        socket.on("$/chat/private/send-post", () => {
-            getPosts()
-        })
-
-        return () => {
-            socket.off("$/friends/accept-invite")
-            socket.off("$/friends/remove-friendship")
-            socket.off("$/friends/connected")
-            socket.off("$/friends/disconnected")
-            socket.off("auth/login/reconnect/res")
-            socket.off("$/chat/private/send-post")
-        }
     }, [])
 
     return [friends]

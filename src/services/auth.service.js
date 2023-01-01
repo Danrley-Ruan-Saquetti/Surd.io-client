@@ -4,7 +4,7 @@ import { socket } from "./../services/socket.js"
 const controlLocalStorage = ControlLocalStorage()
 const KEY = "user"
 
-export const currentUser = { user: { username: "Guest", serverConnected: { _id: null, name: "Server" }, _id: null, level: 1, xp: 0, xpLevelUp: 0 } }
+export const currentUser = { user: { username: "Guest", serverConnected: { _id: null, name: "Server" }, _id: null, level: 1, xp: 0, xpUpLevel: 0 } }
 
 export function AuthService() {
 

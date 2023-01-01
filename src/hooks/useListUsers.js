@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { UserService } from "../services/user.service.js";
-import { socket } from "../services/socket.js"
-import useAuthenticate from "./useAuthenticate.js";
+import UseEventsCurrentUser from "./useEventsCurrentUser.jsx";
+import UseEventsFriends from "./useEventsFriends.jsx";
+import UseEventsUsers from "./useEventsUsers.jsx";
 
 const userService = UserService()
 
@@ -19,46 +20,24 @@ export default function useListUsers(props = { isLobby: false }) {
         })
     }
 
-    const [] = useAuthenticate(getUsers)
+    const [] = UseEventsUsers({
+        observer: getUsers,
+    })
+    const [] = UseEventsCurrentUser({
+        observer: getUsers,
+    })
+    const [] = UseEventsFriends({
+        observer: getUsers,
+        events: [
+            "$/friends/send-invite",
+            "$/friends/denied-invite",
+            "$/friends/accept-invite",
+            "$/friends/remove-friendship",
+        ]
+    })
 
     useEffect(() => {
-        socket.on("$/users/connected", (data) => {
-            getUsers()
-        })
-        socket.on("$/users/disconnected", (data) => {
-            getUsers()
-        })
-        socket.on("$/friends/send-invite", (data) => {
-            getUsers()
-        })
-        socket.on("$/friends/accept-invite", (data) => {
-            getUsers()
-        })
-        socket.on("$/friends/denied-invite", (data) => {
-            getUsers()
-        })
-        socket.on("$/friends/cancel-invite", (data) => {
-            getUsers()
-        })
-        socket.on("$/friends/remove-friendship", (data) => {
-            getUsers()
-        })
-        socket.on("$/users/current/update", (data) => {
-            setTimeout(getUsers, 0)
-        })
-
-        getUsers()
-
-        return () => {
-            socket.off("$/users/connected")
-            socket.off("$/users/disconnected")
-            socket.off("$/friends/send-invite")
-            socket.off("$/friends/accept-invite")
-            socket.off("$/friends/denied-invite")
-            socket.off("$/friends/cancel-invite")
-            socket.off("$/friends/remove-friendship")
-            socket.off("$/users/current/update")
-        }
+        setTimeout(getUsers, 1)
     }, [])
 
     return [users]

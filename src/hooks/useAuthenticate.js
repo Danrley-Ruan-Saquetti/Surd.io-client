@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { socket, USER_AUTHENTICATE, updateStateAuthenticate } from "../services/socket.js"
 
-export default function useAuthenticate(observer = () => {}) {
+export default function useAuthenticate(observer = () => { return }) {
     const [authenticate, setAuthenticate] = useState(USER_AUTHENTICATE.isAuthenticate)
 
     const updateState = (value) => {
@@ -11,19 +11,17 @@ export default function useAuthenticate(observer = () => {}) {
     }
 
     useEffect(() => {
-        observer()
-
         socket.on("auth/login/reconnect/res", (data) => {
             updateState(!data.error)
         })
-
         socket.on("auth/login/res", (data) => {
             updateState(!data.error)
         })
-
         socket.on("disconnect", () => {
             updateState(false)
         })
+
+        observer()
 
         return () => {
             socket.off("auth/login/reconnect/res")

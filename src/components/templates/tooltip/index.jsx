@@ -4,7 +4,7 @@ export default function Tooltip(props = { onClick: (ev) => { }, className: "", c
 
     return (
         <>
-            <div onClick={() => props.onClick()} className={"tooltip-content " + props.className}>{props.content}<span className={"tooltip " + props.direction}>{props.tooltipMsg}</span></div>
+            <div onClick={() => props.onClick && props.onClick()} className={"tooltip-content " + props.className}>{props.content}<span className={"tooltip " + props.direction}>{props.tooltipMsg}</span></div>
         </>
     )
 }
