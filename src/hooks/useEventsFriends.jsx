@@ -6,6 +6,7 @@ export default function UseEventsFriends({ observer = () => { return }, events =
     "$/friends/send-invite",
     "$/friends/denied-invite",
     "$/friends/accept-invite",
+    "$/friends/cancel-invite",
     "$/friends/remove-friendship",
     "$/friends/connected",
     "$/friends/disconnected"

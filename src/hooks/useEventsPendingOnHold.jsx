@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { socket } from "../services/socket"
 import useAuthenticate from "./useAuthenticate"
 
-export default function UseEventsPendingAwaiting({ observer = () => { return }, events = [
+export default function UseEventsPendingOnHold({ observer = () => { return }, events = [
     "$/friends/send-invite",
     "$/friends/denied-invite",
     "$/friends/accept-invite",

@@ -67,6 +67,14 @@ export function UserService() {
         })
     }
 
+    const getPendingOnHold = (req, res = (r) => {}) => {
+        socket.emit("friends/pending/on-hold", {...authService.getToken() })
+
+        socket.on("friends/pending/on-hold/res", (data) => {
+            res(data)
+        })
+    }
+
     const sendInvite = (req, res = (r) => {}) => {
         socket.emit("friends/send-invite", {...authService.getToken(), ...req })
 
@@ -141,6 +149,7 @@ export function UserService() {
         sendPostPrivate,
         getFriends,
         getPendingAwaiting,
+        getPendingOnHold,
         sendInvite,
         acceptInvite,
         deniedInvite,

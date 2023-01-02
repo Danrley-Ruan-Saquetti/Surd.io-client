@@ -1,13 +1,13 @@
-import useListPendingAwaiting from "../../../../hooks/useListPendingAwaiting.js"
 import Icon from "../../../templates/icon/index.jsx"
 import Tooltip from "../../../templates/tooltip/index.jsx"
+import useListPendingOnHold from "../../../../hooks/useListPendingOnHold.js"
 import { UserService } from "../../../../services/user.service.js"
 import "./style.css"
 
 const userService = UserService()
 
-export default function ListInvites() {
-    const [friends] = useListPendingAwaiting()
+export default function ListPending() {
+    const [friends] = useListPendingOnHold()
 
     return (
         <>
@@ -25,22 +25,14 @@ export default function ListInvites() {
                             </div>
                         </div>
                         <div className="friend-action">
-                            {<><Tooltip
-                                content={<><Icon
-                                    name="done"
-                                    onclick={() => userService.acceptInvite({ _id: friend._id })}
-                                    className="bt-base"
-                                /></>}
-                                tooltipMsg="Accept invite"
-                                direction="left"
-                            />
+                            {<>
                                 <Tooltip
                                     content={<><Icon
-                                        name="close"
-                                        onclick={() => userService.deniedInvite({ _id: friend._id })}
+                                        name="cancel"
+                                        onclick={() => userService.cancelInvite({ _id: friend._id })}
                                         className="bt-base"
                                     /></>}
-                                    tooltipMsg="Denied invite"
+                                    tooltipMsg="Cancel invite"
                                     direction="left"
                                 /></>}
                         </div>

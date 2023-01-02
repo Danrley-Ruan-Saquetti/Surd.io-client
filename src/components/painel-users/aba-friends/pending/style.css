@@ -1,0 +1,18 @@
+.list-friends {
+  height: 100%;
+}
+.list-friends .friend-identification {
+  display: flex;
+  gap: 1rem;
+}
+.list-friends .friend {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #414141;
+}
+
+.friend-action {
+  display: flex;
+  gap: 1rem;
+}/*# sourceMappingURL=style.css.map */
