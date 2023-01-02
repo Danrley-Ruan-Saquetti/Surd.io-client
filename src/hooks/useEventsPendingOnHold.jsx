@@ -7,6 +7,8 @@ export default function UseEventsPendingOnHold({ observer = () => { return }, ev
     "$/friends/denied-invite",
     "$/friends/accept-invite",
     "$/friends/cancel-invite",
+    "$/friends/connected",
+    "$/friends/disconnected"
 ], options = {} }) {
     const [] = useAuthenticate(observer)
 

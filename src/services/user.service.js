@@ -59,6 +59,14 @@ export function UserService() {
         })
     }
 
+    const getDenied = (req, res = (r) => {}) => {
+        socket.emit("friends/denied", {...authService.getToken() })
+
+        socket.on("friends/denied/res", (data) => {
+            res(data)
+        })
+    }
+
     const getPendingAwaiting = (req, res = (r) => {}) => {
         socket.emit("friends/pending/awaiting", {...authService.getToken() })
 
@@ -148,6 +156,7 @@ export function UserService() {
         sendPost,
         sendPostPrivate,
         getFriends,
+        getDenied,
         getPendingAwaiting,
         getPendingOnHold,
         sendInvite,

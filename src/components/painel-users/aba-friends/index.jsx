@@ -1,4 +1,5 @@
 import { useState } from "react"
+import ListDenied from "./denied"
 import ListFriends from "./friends"
 import ListInvites from "./invites"
 import ListPending from "./pending"
@@ -27,7 +28,7 @@ export default function AbaFriends() {
                 </>) : abaActive == 2 ? (<>
                     <ListPending />
                 </>) : (<>
-
+                    <ListDenied />
                 </>)}
             </div>
         </>
