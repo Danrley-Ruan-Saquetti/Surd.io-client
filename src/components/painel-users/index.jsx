@@ -1,7 +1,7 @@
 import { useState } from "react"
-import ListFriends from "./list-friends"
-import ListUsers from "./list-users"
+import AbaFriends from "./aba-friends"
 import "./style.css"
+import AbaUsers from "./aba-users"
 
 export default function PainelUsers() {
     const [abaActive, setAbaActive] = useState(0)
@@ -18,9 +18,9 @@ export default function PainelUsers() {
                     <div onClick={() => toggleAba(1)} className={"aba " + (abaActive == 1 ? "active" : "")}>Friends</div>
                 </div>
                 {abaActive == 0 ? (<>
-                    <ListUsers />
+                    <AbaUsers />
                 </>) : (<>
-                    <ListFriends />
+                    <AbaFriends />
                 </>)}
             </div>
         </>

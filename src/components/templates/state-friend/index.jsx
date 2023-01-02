@@ -1,38 +1,35 @@
-import useCurrentUser from "../../../hooks/useCurrentUser.js"
+import useCurrentUser from "../../../hooks/useCurrentUser"
 import { UserService } from "../../../services/user.service.js"
-import useListUsers from "./../../../hooks/useListUsers.js"
-import Tooltip from "../../templates/tooltip"
-import Icon from "../../templates/icon"
-import "./style.css"
+import Icon from "../icon"
+import Tooltip from "../tooltip"
 
 const userService = UserService()
 
-export default function ListUsers() {
-    const [users] = useListUsers()
+export default function StateFriend(props = { friend: null, _id: null }) {
     const [currentUser] = useCurrentUser()
 
     const sendInvite = (_id) => {
         userService.sendInvite({ _id })
     }
 
-    const stateFriend = ({ friend, _id }) => {
-        if (!friend.isInvited) {
+    const stateFriend = () => {
+        if (!props.friend.isInvited) {
             return <><Tooltip
                 content={<><Icon
                     name="person_add"
-                    onclick={() => sendInvite(_id)}
+                    onclick={() => sendInvite(props._id)}
                     className="bt-base"
                 /></>}
                 tooltipMsg="Send friend"
                 direction="left"
             /></>
         }
-        if (friend.isPending) {
-            if (friend.to == currentUser._id) {
+        if (props.friend.isPending) {
+            if (props.friend.to == currentUser._id) {
                 return <><Tooltip
                     content={<><Icon
                         name="done"
-                        onclick={() => userService.acceptInvite({ _id: friend._id })}
+                        onclick={() => userService.acceptInvite({ _id: props.friend._id })}
                         className="bt-base"
                     /></>}
                     tooltipMsg="Accept invite"
@@ -41,7 +38,7 @@ export default function ListUsers() {
                     <Tooltip
                         content={<><Icon
                             name="close"
-                            onclick={() => userService.deniedInvite({ _id: friend._id })}
+                            onclick={() => userService.deniedInvite({ _id: props.friend._id })}
                             className="bt-base"
                         /></>}
                         tooltipMsg="Denied invite"
@@ -51,18 +48,18 @@ export default function ListUsers() {
             return <><Tooltip
                 content={<><Icon
                     name="cancel"
-                    onclick={() => userService.cancelInvite({ _id: friend._id })}
+                    onclick={() => userService.cancelInvite({ _id: props.friend._id })}
                     className="bt-base"
                 /></>}
                 tooltipMsg="Cancel invite"
                 direction="left"
             /></>
         }
-        if (friend.isFriend) {
+        if (props.friend.isFriend) {
             return <><Tooltip
                 content={<><Icon
                     name="person_remove"
-                    onclick={() => userService.removeFriendship({ _id: friend._id })}
+                    onclick={() => userService.removeFriendship({ _id: props.friend._id })}
                     className="bt-base"
                 /></>}
                 tooltipMsg="Remove friend"
@@ -72,7 +69,7 @@ export default function ListUsers() {
         return <><><Tooltip
             content={<><Icon
                 name="person_add"
-                onclick={() => sendInvite(_id)}
+                onclick={() => sendInvite(props._id)}
                 className="bt-base"
             /></>}
             tooltipMsg="Send friend"
@@ -82,19 +79,7 @@ export default function ListUsers() {
 
     return (
         <>
-            <div className="list-users-content">
-                <div className="list-users">
-                    {users.length != 0 && users.map(user => {
-                        return <div key={user._id} className="user">
-                            <p className="user-info-content">
-                                <span className="user-info username">{user.username}</span>
-                                <span className="user-info level">level {user.level}</span>
-                            </p>
-                            {currentUser._id != user._id && (<><div className="friend-action">{stateFriend(user)}</div></>)}
-                        </div>
-                    })}
-                </div>
-            </div>
+            <div className="friend-action">{stateFriend()}</div>
         </>
     )
 }

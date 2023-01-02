@@ -20,21 +20,18 @@
                     gap: 1rem;
                     align-items: baseline;
                     justify-content: end;
-                    .info-username {
+                    .info-user {
                         font-size: 2.5rem;
                     }
                 }
-                &.level {
+                &.xp-content-info {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
                     .info-level {
                         display: flex;
-                        justify-content: space-between;
+                        justify-content: end;
                         align-items: baseline;
-                        .level {
-                            font-size: 1.5rem;
-                        }
                         .xp {
                             font-size: 1.3rem;
                         }

@@ -69,8 +69,9 @@ export default function Chat(props = { isServer: true, idChat: null, posts: [{ b
                 <div id="list-posts-content" className="list-posts-content">
                     <div className="list-posts">
                         {props.posts.map(post => {
-                            return <div key={post._id} className={"post " + (!post.info ? post.user._id == user._id ? "this" : "other" : "info")}>
-                                <p className="post-info">{props.isServer && !post.info && post.user._id != user._id && (<><span className="from">{post.user.username}: </span></>)}<span className="body">{post.body}</span></p>
+                            return <div key={post._id} className={"post " + (!post.info ? " user " : "") + (!post.info ? post.user._id == user._id ? "this" : "other" : "info")}>
+                                <p className="post-info">{props.isServer && !post.info && post.user._id != user._id && (<><span className="from level-content"><span className="level sm">{post.user.level}</span>{post.user.username}</span></>)}</p>
+                                <p className="post-body"><span className="body">{post.body}</span></p>
                                 <p className="post-time">{!post.info && (function () {
                                     const date = new Date(post.createAt)
                                     const now = new Date(Date.now())
@@ -85,7 +86,7 @@ export default function Chat(props = { isServer: true, idChat: null, posts: [{ b
                                         return `${now.getDate() - date.getDate()} days ago`
                                     }
 
-                                    return `${date.getHours()}:${date.getMinutes()}`
+                                    return `${("00" + date.getHours()).slice(-2)}:${("00" + date.getMinutes()).slice(-2)}`
                                 }())}</p>
                             </div>
                         })}

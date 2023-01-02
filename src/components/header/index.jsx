@@ -28,10 +28,10 @@ export default function Header() {
 
                 <div className="header-children perfil">
                     <div className="perfil-info identification">
-                        <span className="info-username"><strong>{user.username}</strong></span>
+                        <span className="info-user level-content"><div className="level md">{user.level}</div><strong>{user.username}</strong></span>
                     </div>
-                    <div className="perfil-info level">
-                        <span className="info-level"><span className="level">Level {user.level}</span> <span className="xp">{user.xp}/{user.xpUpLevel}</span></span>
+                    <div className="perfil-info xp-content-info">
+                        <span className="info-level"><span className="xp">{user.xp}/{user.xpUpLevel}</span></span>
                         <span className="xp-content"><i id="xp-indicator" className="xp-indicator" style={{ width: `${calcXpPercentual()}%` }}></i></span>
                     </div>
                 </div>

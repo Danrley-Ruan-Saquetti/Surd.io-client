@@ -16,18 +16,6 @@
                 display: flex;
                 gap: 1rem;
                 align-items: baseline;
-                .user-info {
-                    &.username {
-                        font-size: 1.7rem;
-                    }
-                    &.level {
-                        font-size: 1.5rem;
-                    }
-                }
-            }
-            .friend-action {
-                display: flex;
-                gap: 1rem;
             }
         }
     }

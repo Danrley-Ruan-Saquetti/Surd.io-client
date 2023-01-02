@@ -13,14 +13,18 @@
 .chat-friend-content .friend-header .close-chat-private {
   cursor: pointer;
 }
-.chat-friend-content .list-friends .friend-identification {
-  display: flex;
-  gap: 1rem;
-}
 .chat-friend-content .list-friends .friend {
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
   border-bottom: 1px solid #414141;
   cursor: pointer;
+}
+.chat-friend-content .list-friends .friend .friend-last-post {
+  align-items: baseline;
+  display: flex;
+  align-items: baseline;
+  max-width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }/*# sourceMappingURL=style.css.map */

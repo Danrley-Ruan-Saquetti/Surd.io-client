@@ -32,11 +32,22 @@ export default function ChatPrivate() {
                         <div className="list-friends">
                             {friends.length != 0 && friends.map(friend => {
                                 return <div key={friend._id} className="friend" onClick={() => toggleChat(friend.idChat)}>
-                                    <div className="friend-identification">
-                                        <span className="friend-username">{friend.user.username}</span>
-                                        <span className="friend-status">{friend.user.online ? "Online" : "Offline"}</span>
+                                    <div className="user-identification-content level-content">
+                                        <span className="user-identification">
+                                            <span className="friend-level level sm">{friend.user.level}</span>
+                                            <span className="friend-username">{friend.user.username}</span>
+                                        </span>
+                                        <span className="friend-status">
+                                            <div className="user-status-content">
+                                                <div className={"status " + (friend.user.online ? "online" : "offline")}></div>
+                                                {friend.user.online ? "Online" : "Offline"}
+                                            </div>
+                                        </span>
                                     </div>
-                                    <span className="friend-last-post">{friend.lastPost && (<>{friend.lastPost.user == user._id ? "you" : "he"}: {friend.lastPost.body}</>)}</span>
+                                    <span className="friend-last-post">{friend.lastPost && (<>
+                                        <div className="last-post-from">{friend.lastPost.user == user._id ? "you" : "he"}:&nbsp;</div>
+                                        <div className="last-post-body">{friend.lastPost.body}</div>
+                                    </>)}</span>
                                 </div>
                             })}
                         </div>

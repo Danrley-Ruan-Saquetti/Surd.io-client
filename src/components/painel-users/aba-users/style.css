@@ -19,14 +19,4 @@
   display: flex;
   gap: 1rem;
   align-items: baseline;
-}
-.list-users-content .list-users .user .user-info-content .user-info.username {
-  font-size: 1.7rem;
-}
-.list-users-content .list-users .user .user-info-content .user-info.level {
-  font-size: 1.5rem;
-}
-.list-users-content .list-users .user .friend-action {
-  display: flex;
-  gap: 1rem;
 }/*# sourceMappingURL=style.css.map */

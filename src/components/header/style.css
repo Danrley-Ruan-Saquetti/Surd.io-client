@@ -23,26 +23,23 @@
   align-items: baseline;
   justify-content: end;
 }
-.content-header .header-children.perfil .perfil-info.identification .info-username {
+.content-header .header-children.perfil .perfil-info.identification .info-user {
   font-size: 2.5rem;
 }
-.content-header .header-children.perfil .perfil-info.level {
+.content-header .header-children.perfil .perfil-info.xp-content-info {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-.content-header .header-children.perfil .perfil-info.level .info-level {
+.content-header .header-children.perfil .perfil-info.xp-content-info .info-level {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: baseline;
 }
-.content-header .header-children.perfil .perfil-info.level .info-level .level {
-  font-size: 1.5rem;
-}
-.content-header .header-children.perfil .perfil-info.level .info-level .xp {
+.content-header .header-children.perfil .perfil-info.xp-content-info .info-level .xp {
   font-size: 1.3rem;
 }
-.content-header .header-children.perfil .perfil-info.level .xp-content {
+.content-header .header-children.perfil .perfil-info.xp-content-info .xp-content {
   position: relative;
   width: 100%;
   height: 5px;
@@ -50,7 +47,7 @@
   overflow: hidden;
   background-color: #141414;
 }
-.content-header .header-children.perfil .perfil-info.level .xp-content .xp-indicator {
+.content-header .header-children.perfil .perfil-info.xp-content-info .xp-content .xp-indicator {
   position: absolute;
   left: 0px;
   height: 100%;
