@@ -52,14 +52,20 @@ export default function ChatPrivate() {
                             })}
                         </div>
                     </>) : (<>
-                        <div className="friend-header">
+                        <div className="friend-header user-identification-content">
                             <Icon
                                 className="close-chat-private"
                                 name="arrow_back"
                                 onclick={() => toggleChat(null)}
                             />
-                            <span className="friend-username">{friendSelected.user.username}</span>
-                            <span className="friend-status">{friendSelected.user.online ? "Online" : "Offline"}</span>
+                            <div className="user-identification level-content">
+                                <span className="friend-level level sm">{friendSelected.user.level}</span>
+                                <span className="friend-username">{friendSelected.user.username}</span>
+                            </div>
+                            <div className="user-status-content">
+                                <div className={"status " + (friendSelected.user.online ? "online" : "offline")}></div>
+                                {friendSelected.user.online ? "Online" : "Offline"}
+                            </div>
                         </div>
                         <SubChat
                             idChat={idChatSelected}

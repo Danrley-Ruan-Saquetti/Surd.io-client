@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserService } from "../services/user.service.js";
-import UseEventsFriends from "./useEventsFriends.jsx";
-import UseEventsPosts from "./useEventsPosts.jsx";
+import UseEvents from "./useEvents.js";
 
 const userService = UserService()
 
@@ -16,25 +15,17 @@ export default function useListFriends() {
         })
     }
 
-    const [] = UseEventsPosts({
+    const [] = UseEvents({
         observer: getFriends,
         events: [
-            "$/chat/private/send-post"
-        ]
+            { ev: "$/chat/private/send-post" },
+            { ev: "$/friends/accept-invite" },
+            { ev: "$/friends/remove-friendship" },
+            { ev: "$/friends/connected" },
+            { ev: "$/friends/disconnected" },
+        ],
+        options: { $uniqueObserver: true }
     })
-    const [] = UseEventsFriends({
-        observer: getFriends,
-        events: [
-            "$/friends/accept-invite",
-            "$/friends/remove-friendship",
-            "$/friends/connected",
-            "$/friends/disconnected"
-        ]
-    })
-
-    useEffect(() => {
-        getFriends()
-    }, [])
 
     return [friends]
 }

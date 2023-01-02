@@ -1,5 +1,13 @@
 .item {
     height: 6.5rem;
+    transition: .3s;
+    cursor: pointer;
+    &.active {
+        background-color: #383838;
+    }
+    &:hover {
+        background-color: #414141;
+    }
     .action {
         display: flex;
         align-items: center;
@@ -8,9 +16,6 @@
         height: 100%;
         font-size: 3rem;
         transition: .3s;
-        &:hover {
-            background-color: #414141;
-            cursor: pointer;
-        }
+        background: transparent;
     }
 }

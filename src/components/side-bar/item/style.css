@@ -1,5 +1,13 @@
 .item {
   height: 6.5rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.item.active {
+  background-color: #383838;
+}
+.item:hover {
+  background-color: #414141;
 }
 .item .action {
   display: flex;
@@ -9,8 +17,5 @@
   height: 100%;
   font-size: 3rem;
   transition: 0.3s;
-}
-.item .action:hover {
-  background-color: #414141;
-  cursor: pointer;
+  background: transparent;
 }/*# sourceMappingURL=style.css.map */

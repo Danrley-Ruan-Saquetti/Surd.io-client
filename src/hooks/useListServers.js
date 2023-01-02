@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserService } from "../services/user.service.js"
-import UseEventsUsers from "./useEventsUsers.jsx";
+import UseEvents from "./useEvents.js"
 
 const userService = UserService()
 
@@ -13,19 +13,16 @@ export default function useListServers() {
         })
     }
 
-    const [] = UseEventsUsers({
+    const [] = UseEvents({
         observer: getServers,
         events: [
-            "$/users/connected",
-            "$/users/disconnected",
-            "$/users/current/update",
-            "$/users/current/update/serverConnected"
-        ]
+            { ev: "$/users/connected" },
+            { ev: "$/users/disconnected" },
+            { ev: "$/users/current/update" },
+            { ev: "$/users/current/update/serverConnected" },
+        ],
+        options: { $uniqueObserver: true }
     })
-
-    useEffect(() => {
-        getServers()
-    }, [])
 
     return [servers]
 }

@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserService } from "../services/user.service.js"
-import UseEventsPosts from "./useEventsPosts.jsx";
-import UseEventsUsers from "./useEventsUsers.jsx";
+import UseEvents from "./useEvents.js";
 
 const userService = UserService()
 
@@ -14,22 +13,14 @@ export default function useListPosts() {
         })
     }
 
-    const [] = UseEventsUsers({
+    const [] = UseEvents({
         observer: getPosts,
         events: [
-            "$/users/current/update/serverConnected"
-        ]
+            { ev: "$/chat/send-post" },
+            { ev: "$/users/current/update/serverConnected" }
+        ],
+        options: { $uniqueObserver: true }
     })
-    const [] = UseEventsPosts({
-        observer: getPosts,
-        events: [
-            "$/chat/send-post"
-        ]
-    })
-
-    useEffect(() => {
-        getPosts()
-    }, [])
 
     return [posts]
 }

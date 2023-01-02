@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserService } from "../services/user.service.js";
-import UseEventsCurrentUser from "./useEventsCurrentUser.jsx";
-import UseEventsFriends from "./useEventsFriends.jsx";
-import UseEventsUsers from "./useEventsUsers.jsx";
+import UseEvents from "./useEvents.js"
 
 const userService = UserService()
 
@@ -20,26 +18,21 @@ export default function useListUsers(props = { isLobby: false }) {
         })
     }
 
-    const [] = UseEventsUsers({
-        observer: getUsers,
-    })
-    const [] = UseEventsCurrentUser({
-        observer: getUsers,
-    })
-    const [] = UseEventsFriends({
+    const [] = UseEvents({
         observer: getUsers,
         events: [
-            "$/friends/send-invite",
-            "$/friends/denied-invite",
-            "$/friends/accept-invite",
-            "$/friends/cancel-invite",
-            "$/friends/remove-friendship",
-        ]
+            { ev: "$/users/connected" },
+            { ev: "$/users/disconnected" },
+            { ev: "$/users/current/update" },
+            { ev: "$/users/current/update/serverConnected" },
+            { ev: "$/friends/send-invite" },
+            { ev: "$/friends/denied-invite" },
+            { ev: "$/friends/accept-invite" },
+            { ev: "$/friends/cancel-invite" },
+            { ev: "$/friends/remove-friendship" },
+        ],
+        options: { $uniqueObserver: true }
     })
-
-    useEffect(() => {
-        setTimeout(getUsers, 1)
-    }, [])
 
     return [users]
 }

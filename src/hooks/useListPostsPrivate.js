@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserService } from "../services/user.service.js"
-import UseEventsPosts from "./useEventsPosts.jsx";
+import UseEvents from "./useEvents.js"
 
 const userService = UserService()
 
@@ -13,16 +13,13 @@ export default function useListPostsPrivate(props = { idChat }) {
         })
     }
 
-    const [] = UseEventsPosts({
+    const [] = UseEvents({
         observer: getPosts,
         events: [
-            "$/chat/private/send-post"
-        ]
+            { ev: "$/chat/private/send-post" },
+        ],
+        options: { $uniqueObserver: true }
     })
-
-    useEffect(() => {
-        getPosts()
-    }, [])
 
     return [posts]
 }

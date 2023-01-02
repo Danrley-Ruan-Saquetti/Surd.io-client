@@ -1,7 +1,7 @@
 import Item from "./item"
 import "./style.css"
 
-export default function SideBar(props = { actionFunction: (action = "") => { } }) {
+export default function SideBar(props = { itemActive: null, actionFunction: (action = "") => { } }) {
     const itens = [
         { content: "Home", name: "home", action: "home" },
         { content: "Profile", name: "account_circle", action: "profile" },
@@ -20,6 +20,7 @@ export default function SideBar(props = { actionFunction: (action = "") => { } }
                         name={item.name}
                         action={item.action}
                         actionFunction={props.actionFunction}
+                        isActive={props.itemActive == item.action}
                     />
                 })}
             </div>

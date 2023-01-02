@@ -170,4 +170,9 @@ main {
 }
 .user-status-content .status.online {
   background-color: #058a00;
+}
+
+.friend-action {
+  display: flex;
+  gap: 1rem;
 }/*# sourceMappingURL=GlobalStyles.css.map */

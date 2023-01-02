@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { AuthService, currentUser } from "../services/auth.service.js"
-import UseEventsCurrentUser from "./useEventsCurrentUser.jsx"
+import UseEvents from "./useEvents.js"
 import useLocalStorage from "./useLocalStorage.js"
 
 const authService = AuthService()
@@ -17,8 +17,13 @@ export default function useCurrentUser() {
         currentUser.user = data.user
     }
 
-    const [] = UseEventsCurrentUser({
+    const [] = UseEvents({
         observer: updateCurrentUser,
+        events: [
+            { ev: "$/users/current/update" },
+            { ev: "$/users/current/update/serverConnected" }
+        ],
+        options: { $uniqueObserver: true }
     })
 
     return [user]

@@ -21,17 +21,16 @@
                     text-align: center;
                 }
                 &.this {
-                    text-align: end;
-                    padding-left: 25%;
-                }
-                &.other {
-                    padding-right: 25%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
                 }
                 &.user {
                     .post-body {
                         padding: .5rem 1rem;
                         border-radius: .5rem;
                         background-color: #414141;
+                        width: min-content;
                     }
                 }
                 .post-info {
@@ -42,7 +41,6 @@
                 }
                 .post-time {
                     font-size: 1.2rem;
-                    text-align: end;
                 }
             }
         }

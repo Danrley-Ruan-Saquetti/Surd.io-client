@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserService } from "../services/user.service.js";
-import UseEventsPendingOnHold from "./useEventsPendingOnHold.jsx";
+import UseEvents from "./useEvents.js"
 
 const userService = UserService()
 
@@ -15,13 +15,18 @@ export default function useListPendingOnHold() {
         })
     }
 
-    const [] = UseEventsPendingOnHold({
+    const [] = UseEvents({
         observer: getInvites,
+        events: [
+            { ev: "$/friends/send-invite" },
+            { ev: "$/friends/denied-invite" },
+            { ev: "$/friends/accept-invite" },
+            { ev: "$/friends/cancel-invite" },
+            { ev: "$/friends/connected" },
+            { ev: "$/friends/disconnected" },
+        ],
+        options: { $uniqueObserver: true }
     })
-
-    useEffect(() => {
-        getInvites()
-    }, [])
 
     return [invites]
 }
