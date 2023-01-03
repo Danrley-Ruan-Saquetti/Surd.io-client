@@ -23,6 +23,8 @@ export default function useListFriends() {
             { ev: "$/friends/remove-friendship" },
             { ev: "$/friends/connected" },
             { ev: "$/friends/disconnected" },
+            { ev: "$/friends/enter-server" },
+            { ev: "$/friends/quit-server" },
         ],
         options: { $uniqueObserver: true }
     })

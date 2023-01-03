@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router-dom"
 import useListFriends from "../../../../hooks/useListFriends.js"
 import { UserService } from "../../../../services/user.service.js"
+import { currentUser as currentU } from "../../../../services/auth.service.js"
 import Icon from "../../../templates/icon/index.jsx"
 import Tooltip from "../../../templates/tooltip/index.jsx"
 import "./style.css"
@@ -8,6 +10,20 @@ const userService = UserService()
 
 export default function ListFriends() {
     const [friends] = useListFriends()
+    const navigate = useNavigate()
+
+    const redirectPage = (url) => {
+        navigate(url)
+    }
+
+    const startGame = ({ idServer }) => {
+        userService.startGame({ idServer }, res => {
+            if (res.success) {
+                currentU.user.isPlaying = true
+                redirectPage("/game")
+            }
+        })
+    }
 
     return (
         <>
@@ -24,6 +40,15 @@ export default function ListFriends() {
                                 {friend.user.online ? "Online" : "Offline"}
                             </div>
                         </div>
+                        {friend.user.online && !friend.user.serverConnected.isLobby && (<>
+                            <Tooltip
+                                className="server-connected-info"
+                                content={<span className="server-info-name">{friend.user.serverConnected.name}</span>}
+                                direction="top"
+                                tooltipMsg={`Click to enter server`}
+                                onClick={() => startGame({ idServer: friend.user.serverConnected._id })}
+                            />
+                        </>)}
                         {<>
                             <div className="friend-action">
                                 <Tooltip
