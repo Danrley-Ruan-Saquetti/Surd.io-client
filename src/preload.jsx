@@ -2,8 +2,10 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import useCurrentUser from "./hooks/useCurrentUser.js"
 import { AuthService } from "./services/auth.service.js"
+import { UserService } from "./services/user.service.js"
 
 const authService = AuthService()
+const userService = UserService()
 
 export default function Preload(props) {
     const [currentUser] = useCurrentUser()
@@ -20,8 +22,20 @@ export default function Preload(props) {
         }
     }
 
+    const verifyIsPlaying = () => {
+        const { pathname } = window.location
+        if (pathname == "/game") {
+            userService.verifyIsPlaying(res => {
+                if (res.error) {
+                    redirectPage("/home")
+                }
+            })
+        }
+    }
+
     useEffect(() => {
         verifyIsLogged()
+        verifyIsPlaying()
     }, [])
 
     return (

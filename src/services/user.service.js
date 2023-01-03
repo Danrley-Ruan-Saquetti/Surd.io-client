@@ -10,10 +10,21 @@ export function UserService() {
 
         socket.on("users/res", (data) => {
             res(data)
+            socket.off("users/res")
         })
 
         socket.on("users/connected/res", (data) => {
             res(data)
+            socket.off("users/connected/res")
+        })
+    }
+
+    const verifyIsPlaying = (res = () => {}) => {
+        socket.emit("users/verify-is-playing", authService.getToken())
+
+        socket.on("users/verify-is-playing/res", (data) => {
+            res(data)
+            socket.off("users/verify-is-playing/res")
         })
     }
 
@@ -23,6 +34,7 @@ export function UserService() {
 
         socket.on("chat/res", (data) => {
             res(data)
+            socket.off("chat/res")
         })
     }
 
@@ -31,6 +43,7 @@ export function UserService() {
 
         socket.on("chat/private/res", (data) => {
             res(data)
+            socket.off("chat/private/res")
         })
     }
 
@@ -39,6 +52,7 @@ export function UserService() {
 
         socket.on("chat/send-post/res", (data) => {
             res(data)
+            socket.off("chat/send-post/res")
         })
     }
 
@@ -47,6 +61,7 @@ export function UserService() {
 
         socket.on("chat/private/send-post/res", (data) => {
             res(data)
+            socket.off("chat/private/send-post/res")
         })
     }
 
@@ -56,6 +71,7 @@ export function UserService() {
 
         socket.on("friends/res", (data) => {
             res(data)
+            socket.off("friends/res")
         })
     }
 
@@ -64,6 +80,7 @@ export function UserService() {
 
         socket.on("friends/denied/res", (data) => {
             res(data)
+            socket.off("friends/denied/res")
         })
     }
 
@@ -72,6 +89,7 @@ export function UserService() {
 
         socket.on("friends/pending/awaiting/res", (data) => {
             res(data)
+            socket.off("friends/pending/awaiting/res")
         })
     }
 
@@ -80,6 +98,7 @@ export function UserService() {
 
         socket.on("friends/pending/on-hold/res", (data) => {
             res(data)
+            socket.off("friends/pending/on-hold/res")
         })
     }
 
@@ -88,6 +107,7 @@ export function UserService() {
 
         socket.on("friends/send-invite/res", (data) => {
             res(data)
+            socket.off("friends/send-invite/res")
         })
     }
 
@@ -96,6 +116,7 @@ export function UserService() {
 
         socket.on("friends/accept-invite/res", (data) => {
             res(data)
+            socket.off("friends/accept-invite/res")
         })
     }
 
@@ -104,6 +125,7 @@ export function UserService() {
 
         socket.on("friends/denied-invite/res", (data) => {
             res(data)
+            socket.off("friends/denied-invite/res")
         })
     }
 
@@ -112,6 +134,7 @@ export function UserService() {
 
         socket.on("friends/cancel-invite/res", (data) => {
             res(data)
+            socket.off("friends/cancel-invite/res")
         })
     }
 
@@ -120,6 +143,7 @@ export function UserService() {
 
         socket.on("friends/remove-friendship/res", (data) => {
             res(data)
+            socket.off("friends/remove-friendship/res")
         })
     }
 
@@ -129,6 +153,7 @@ export function UserService() {
 
         socket.on("servers/res", (data) => {
             res(data)
+            socket.off("servers/res")
         })
     }
 
@@ -138,6 +163,7 @@ export function UserService() {
 
         socket.on("games/start/res", (data) => {
             res(data)
+            socket.off("games/start/res")
         })
     }
 
@@ -146,11 +172,13 @@ export function UserService() {
 
         socket.on("games/quit/res", (data) => {
             res(data)
+            socket.off("games/quit/res")
         })
     }
 
     return {
         getUsers,
+        verifyIsPlaying,
         getPosts,
         getPostsPrivate,
         sendPost,

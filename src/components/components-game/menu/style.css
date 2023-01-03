@@ -1,0 +1,16 @@
+.menu-game-content {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 5rem;
+  background-color: #222222;
+}
+.menu-game-content .menu-game-actions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  cursor: pointer;
+}
+.menu-game-content .menu-game-actions .action {
+  padding: 1.5rem;
+}/*# sourceMappingURL=style.css.map */

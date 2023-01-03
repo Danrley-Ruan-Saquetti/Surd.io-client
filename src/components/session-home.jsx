@@ -5,7 +5,7 @@ import "./session-styles/home.css"
 import { useState } from "react"
 
 export default function HomeSession() {
-    const [action, setAction] = useState("user")
+    const [action, setAction] = useState("game")
 
     const updateAction = (ac = "") => {
         setAction(ac)

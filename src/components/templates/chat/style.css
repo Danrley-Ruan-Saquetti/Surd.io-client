@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: #222222;
 }
 .chat .list-posts-content {
   position: relative;
@@ -33,9 +34,9 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background-color: #414141;
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 .chat .list-posts-content .list-posts .post .post-info {
   font-size: 1.5rem;
