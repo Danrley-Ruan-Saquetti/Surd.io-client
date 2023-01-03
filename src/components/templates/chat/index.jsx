@@ -23,7 +23,7 @@ export default function Chat(props = { isServer: true, idChat: null, posts: [{ b
         const tag = document.getElementById("list-posts-content")
         if (!tag) { return }
 
-        tag.scrollTop = tag.scrollHeight
+        setTimeout(() => { tag.scrollTop = tag.scrollHeight }, 100)
     }
 
     const getTimeOfPost = ({ createAt = Date.now() }) => {

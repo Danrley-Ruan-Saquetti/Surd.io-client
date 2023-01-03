@@ -35,7 +35,7 @@ export default function AbaUsers() {
                                         /></>}
                                         tooltipMsg="Send friend"
                                         direction="left"
-                                    /></>) : currentUser._id == user.friend.to ? (<>Awaiting</>) : (<>Pending</>)}
+                                    /></>) : currentUser._id == user.friend.to ? (<>Friend invite</>) : (<>Pending</>)}
                             </span></>) : (<></>)}
                         </div>
                     })}
