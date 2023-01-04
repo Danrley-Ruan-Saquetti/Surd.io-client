@@ -25,10 +25,27 @@ export default function ListFriends() {
         })
     }
 
+    const getTimeOfFriend = ({ lastTimeOnline = Date.now() }) => {
+        const date = new Date(lastTimeOnline)
+        const now = new Date(Date.now())
+
+        if (now.getFullYear() - date.getFullYear() > 0) {
+            return `${now.getFullYear() - date.getFullYear()} years ago`
+        }
+        if (now.getMonth() - date.getMonth() > 0) {
+            return `${now.getMonth() - date.getMonth()} months ago`
+        }
+        if (now.getDate() - date.getDate() > 0) {
+            return `${now.getDate() - date.getDate()} days ago`
+        }
+
+        return <div className="post-time">{("00" + date.getHours()).slice(-2)}:{("00" + date.getMinutes()).slice(-2)}</div>
+    }
+
     return (
         <>
             <div className="list-friends">
-                {friends.length != 0 && friends.map(friend => {
+                {friends.length != 0 ? friends.map(friend => {
                     return <div key={friend._id} className="friend">
                         <div className="user-identification-content">
                             <div className="user-identification level-content">
@@ -37,7 +54,7 @@ export default function ListFriends() {
                             </div>
                             <div className="user-status-content">
                                 <div className={"status " + (friend.user.online ? "online" : "offline")}></div>
-                                {friend.user.online ? "Online" : "Offline"}
+                                {friend.user.online ? "Online" : (<>Offline&nbsp;&nbsp;&nbsp;{getTimeOfFriend(friend.user)}</>)}
                             </div>
                         </div>
                         {friend.user.online && !friend.user.serverConnected.isLobby && (<>
@@ -63,7 +80,13 @@ export default function ListFriends() {
                             </div>
                         </>}
                     </div>
-                })}
+                }) : (<>
+                    <div className="info list-empty">
+                        <span>
+                            You don't have friends
+                        </span>
+                    </div>
+                </>)}
             </div>
         </>
     )

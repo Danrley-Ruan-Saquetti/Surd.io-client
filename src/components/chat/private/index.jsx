@@ -30,7 +30,7 @@ export default function ChatPrivate() {
                 {!friendSelected ?
                     (<>
                         <div className="list-friends">
-                            {friends.length != 0 && friends.map(friend => {
+                            {friends.length != 0 ? friends.map(friend => {
                                 return <div key={friend._id} className="friend" onClick={() => toggleChat(friend.idChat)}>
                                     <div className="user-identification-content level-content">
                                         <span className="user-identification">
@@ -49,7 +49,13 @@ export default function ChatPrivate() {
                                         <div className="last-post-body">{friend.lastPost.body}</div>
                                     </>)}</span>
                                 </div>
-                            })}
+                            }) : (<>
+                                <div className="info list-empty">
+                                    <span>
+                                        You don't have friends
+                                    </span>
+                                </div>
+                            </>)}
                         </div>
                     </>) : (<>
                         <div className="friend-header user-identification-content">

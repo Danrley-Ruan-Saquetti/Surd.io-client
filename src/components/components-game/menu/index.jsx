@@ -30,11 +30,12 @@ export default function MenuGame() {
                     <Tooltip
                         content={<><Icon
                             name="logout"
-                            onclick={() => actions.leave()}
+                            className="action-icon"
                         /></>}
                         tooltipMsg="Quit Game"
                         direction="right"
                         className="action leave"
+                        onClick={actions.leave}
                     />
                 </div>
             </div>

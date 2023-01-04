@@ -11,7 +11,6 @@ export default function UseEvents({
         $useAuthenticate: true
     }
 }) {
-
     if (typeof options.$uniqueObserver === "undefined") {
         options.$uniqueObserver = false
     }

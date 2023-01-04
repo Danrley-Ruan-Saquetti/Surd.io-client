@@ -35,7 +35,7 @@ export default function AbaUsers() {
         <>
             <div className="list-users-content">
                 <div className="list-users">
-                    {users.length != 0 && users.map(user => {
+                    {users.length != 0 ? users.map(user => {
                         return <div key={user._id} className="user user-identification-content">
                             <span className="user-identification level-content">
                                 <span className="level sm">{user.level}</span>
@@ -63,7 +63,13 @@ export default function AbaUsers() {
                                     /></>) : currentUser._id == user.friend.to ? (<>Friend invite</>) : (<>Pending</>)}
                             </span></>) : (<></>)}
                         </div>
-                    })}
+                    }) : (<>
+                        <div className="info list-empty">
+                            <span>
+                                No users online
+                            </span>
+                        </div>
+                    </>)}
                 </div>
             </div>
         </>

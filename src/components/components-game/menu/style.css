@@ -12,5 +12,9 @@
   cursor: pointer;
 }
 .menu-game-content .menu-game-actions .action {
-  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 5rem;
 }/*# sourceMappingURL=style.css.map */

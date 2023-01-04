@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import useListServers from "../../hooks/useListServers.js"
 import { currentUser } from "../../services/auth.service.js"
 import { UserService } from "../../services/user.service.js"
+import useListServers from "../../hooks/useListServers.js"
+import Loading from "../templates/loading"
 import Icon from "../templates/icon"
 import "./style.css"
 
@@ -11,6 +12,7 @@ const userService = UserService()
 export default function PainelGame() {
     const [servers] = useListServers()
     const [idServerSelected, setIdServerSelected] = useState(null)
+    const [loading, setLoading] = useState(<></>)
     const navigate = useNavigate()
 
     const redirectPage = (url) => {
@@ -22,7 +24,10 @@ export default function PainelGame() {
     }
 
     const startGame = () => {
+        setLoading(<><Loading /></>)
+
         userService.startGame({ idServer: idServerSelected }, res => {
+            setLoading(<></>)
             if (res.success) {
                 currentUser.user.isPlaying = true
                 redirectPage("/game")
@@ -47,6 +52,7 @@ export default function PainelGame() {
 
     return (
         <>
+            {loading}
             <div className="game-content">
                 <div className="aba-content game-aba">
                     <Icon

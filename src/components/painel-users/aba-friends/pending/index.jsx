@@ -12,7 +12,7 @@ export default function ListPending() {
     return (
         <>
             <div className="list-friends">
-                {friends.length != 0 && friends.map(friend => {
+                {friends.length != 0 ? friends.map(friend => {
                     return <div key={friend._id} className="friend">
                         <div className="user-identification-content">
                             <div className="user-identification level-content">
@@ -37,7 +37,13 @@ export default function ListPending() {
                                 /></>}
                         </div>
                     </div>
-                })}
+                }) : (<>
+                    <div className="info list-empty">
+                        <span>
+                            No invites pending
+                        </span>
+                    </div>
+                </>)}
             </div>
         </>
     )

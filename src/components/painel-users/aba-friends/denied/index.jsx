@@ -12,7 +12,7 @@ export default function ListDenied() {
     return (
         <>
             <div className="list-friends">
-                {invites.length != 0 && invites.map(invite => {
+                {invites.length != 0 ? invites.map(invite => {
                     return <div key={invite._id} className="friend">
                         <div className="user-identification-content">
                             <div className="user-identification level-content">
@@ -37,7 +37,13 @@ export default function ListDenied() {
                                 /></>}
                         </div>
                     </div>
-                })}
+                }) : (<>
+                    <div className="info list-empty">
+                        <span>
+                            No invites denied
+                        </span>
+                    </div>
+                </>)}
             </div>
         </>
     )

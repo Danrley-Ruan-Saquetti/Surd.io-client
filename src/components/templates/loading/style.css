@@ -1,0 +1,32 @@
+.loading-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 3px;
+  width: 100%;
+  z-index: 200;
+}
+.loading-content .load-bar {
+  height: 100%;
+  background-color: #fff;
+  -webkit-animation: slide-bar-load 2s ease-in-out infinite;
+          animation: slide-bar-load 2s ease-in-out infinite;
+}
+
+@-webkit-keyframes slide-bar-load {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes slide-bar-load {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}/*# sourceMappingURL=style.css.map */

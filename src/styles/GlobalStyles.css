@@ -47,6 +47,7 @@ a {
 
 #root {
   width: 100vw;
+  min-width: 450px;
   height: 100vh;
 }
 
@@ -183,4 +184,13 @@ main {
 .friend-action {
   display: flex;
   gap: 1rem;
+}
+
+.list-empty {
+  justify-content: center !important;
+  text-align: center !important;
+}
+.list-empty.info {
+  padding: 1rem 0;
+  border-bottom: 1px solid #414141;
 }/*# sourceMappingURL=GlobalStyles.css.map */

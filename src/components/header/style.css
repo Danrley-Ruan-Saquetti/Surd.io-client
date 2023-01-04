@@ -54,4 +54,35 @@
   border-radius: 0.3rem;
   background-color: #313131;
   box-shadow: inset 0 0 1rem rgba(255, 255, 255, 0.3);
+}
+
+@media screen and (max-width: 914px) {
+  .content-header .header-children.logo {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 807px) {
+  .content-header .header-children.logo {
+    font-size: 1.8rem;
+  }
+}
+@media screen and (max-width: 736px) {
+  .content-header .header-children.logo {
+    font-size: 1.6rem;
+  }
+}
+@media screen and (max-width: 666px) {
+  .content-header .header-children.logo {
+    font-size: 1.4rem;
+  }
+}
+@media screen and (max-width: 595px) {
+  .content-header .header-children.logo {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (max-width: 523px) {
+  .content-header .header-children.logo {
+    font-size: 1.2rem;
+  }
 }/*# sourceMappingURL=style.css.map */

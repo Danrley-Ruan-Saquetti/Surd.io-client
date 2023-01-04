@@ -12,7 +12,7 @@ export default function ListInvites() {
     return (
         <>
             <div className="list-friends">
-                {friends.length != 0 && friends.map(friend => {
+                {friends.length != 0 ? friends.map(friend => {
                     return <div key={friend._id} className="friend">
                         <div className="user-identification-content">
                             <div className="user-identification level-content">
@@ -45,7 +45,13 @@ export default function ListInvites() {
                                 /></>}
                         </div>
                     </div>
-                })}
+                }) : (<>
+                    <div className="info list-empty">
+                        <span>
+                            No invites friend
+                        </span>
+                    </div>
+                </>)}
             </div>
         </>
     )
