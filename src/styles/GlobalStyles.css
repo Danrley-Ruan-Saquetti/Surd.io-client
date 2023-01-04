@@ -13,7 +13,7 @@ html {
 body {
   font-size: 1.6rem;
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: #141414;
   color: #fff;
 }
@@ -79,6 +79,9 @@ main {
   display: flex;
   border-bottom: 1px solid #414141;
 }
+.aba-content .aba-header {
+  padding: 1rem;
+}
 .aba-content .aba {
   width: 25%;
   padding: 1rem 0;
@@ -140,6 +143,11 @@ main {
   font-size: 2.2rem;
   min-width: 3.3rem;
   height: 3.3rem;
+}
+.level-content .level.bg {
+  font-size: 2.5rem;
+  min-width: 3.5rem;
+  height: 3.5rem;
 }
 
 .user-identification-content {

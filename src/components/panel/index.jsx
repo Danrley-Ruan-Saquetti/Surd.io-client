@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { AuthService } from "../../services/auth.service.js"
 import Chat from "../chat"
 import PainelGame from "../painel-game/index.jsx"
+import PainelProfile from "../painel-profile/index.jsx"
 import PainelUsers from "../painel-users"
 import "./style.css"
 
@@ -17,25 +18,27 @@ export default function Panel(props = { action: "" }) {
     return (
         <>
             <div className="panel">
-                <div className="panel-action">
-                    {
-                        props.action &&
-                        (props.action == "home" && (<><p>home</p></>)) ||
-                        (props.action == "profile" && (<><p>profile</p></>)) ||
-                        (props.action == "game" && (<><PainelGame /></>)) ||
-                        (props.action == "user" && (<><PainelUsers /></>)) ||
-                        (props.action == "shop" && (<><p>shop</p></>)) ||
-                        (props.action == "setting" && (<><p><button onClick={() => {
-                            authService.logout(res => {
-                                if (res.success) {
-                                    redirectPage("/auth/login")
-                                }
-                            })
-                        }}>Logout</button></p></>))
-                    }
-                </div>
+                <div className="panel-action-content">
+                    <div className="panel-action">
+                        {
+                            props.action &&
+                            (props.action == "home" && (<><p>home</p></>)) ||
+                            (props.action == "profile" && (<><PainelProfile /></>)) ||
+                            (props.action == "game" && (<><PainelGame /></>)) ||
+                            (props.action == "user" && (<><PainelUsers /></>)) ||
+                            (props.action == "shop" && (<><p>shop</p></>)) ||
+                            (props.action == "setting" && (<><p><button onClick={() => {
+                                authService.logout(res => {
+                                    if (res.success) {
+                                        redirectPage("/auth/login")
+                                    }
+                                })
+                            }}>Logout</button></p></>))
+                        }
+                    </div>
 
-                <div className="panel-chat"><Chat /></div>
+                    <div className="panel-chat"><Chat /></div>
+                </div>
             </div>
         </>
     )

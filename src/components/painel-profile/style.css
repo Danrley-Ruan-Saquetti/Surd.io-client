@@ -1,0 +1,50 @@
+.painel-profile-content {
+  height: 100%;
+}
+.painel-profile-content .profile-info-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.painel-profile-content .profile-info-content .profile-info {
+  position: absolute;
+  min-height: 100%;
+  width: 100%;
+  padding: 1rem;
+}
+.painel-profile-content .profile-info-content .profile-info .profile-header .username {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+.painel-profile-content .profile-info-content .profile-info .profile-header.xp-content-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.painel-profile-content .profile-info-content .profile-info .profile-header.xp-content-info .info-level {
+  display: flex;
+  justify-content: end;
+  align-items: baseline;
+}
+.painel-profile-content .profile-info-content .profile-info .profile-header.xp-content-info .info-level .xp {
+  font-size: 1.3rem;
+}
+.painel-profile-content .profile-info-content .profile-info .profile-header.xp-content-info .xp-content {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #141414;
+}
+.painel-profile-content .profile-info-content .profile-info .profile-header.xp-content-info .xp-content .xp-indicator {
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  border-radius: 0.3rem;
+  background-color: #313131;
+  box-shadow: inset 0 0 1rem rgba(255, 255, 255, 0.3);
+}/*# sourceMappingURL=style.css.map */

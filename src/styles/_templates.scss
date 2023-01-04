@@ -1,6 +1,9 @@
 .aba-content {
     display: flex;
     border-bottom: 1px solid #414141;
+    .aba-header {
+        padding: 1rem;
+    }
     .aba {
         width: 25%;
         padding: 1rem 0;
@@ -61,6 +64,11 @@
             font-size: 2.2rem;
             min-width: 3.3rem;
             height: 3.3rem;
+        }
+        &.bg {
+            font-size: 2.5rem;
+            min-width: 3.5rem;
+            height: 3.5rem;
         }
     }
 }

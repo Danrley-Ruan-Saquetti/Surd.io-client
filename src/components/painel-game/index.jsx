@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import useListServers from "../../hooks/useListServers.js"
 import { currentUser } from "../../services/auth.service.js"
 import { UserService } from "../../services/user.service.js"
+import Icon from "../templates/icon"
 import "./style.css"
 
 const userService = UserService()
@@ -30,7 +31,12 @@ export default function PainelGame() {
     }
 
     const findServerById = () => {
-        if (!idServerSelected) { return null }
+        if (!idServerSelected) {
+            if (servers.length != 0) {
+                setIdServerSelected(servers[0]._id)
+            }
+            return null
+        }
 
         const server = servers.find(server => server._id == idServerSelected)
 
@@ -42,6 +48,13 @@ export default function PainelGame() {
     return (
         <>
             <div className="game-content">
+                <div className="aba-content game-aba">
+                    <Icon
+                        className="aba-header"
+                        name="sports_esports"
+                    />
+                    <div className="aba aba-game active">Servers</div>
+                </div>
                 <div className="list-servers-content">
                     <div className="list-servers">
                         {servers.length != 0 && servers.map(server => {
