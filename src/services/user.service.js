@@ -176,6 +176,15 @@ export function UserService() {
         })
     }
 
+    const getData = (res = () => {}) => {
+        socket.emit("games/data", {...authService.getToken() })
+
+        socket.on("games/data/res", (data) => {
+            res(data)
+            socket.off("games/data/res")
+        })
+    }
+
     return {
         getUsers,
         verifyIsPlaying,
@@ -194,6 +203,7 @@ export function UserService() {
         removeFriendship,
         getServers,
         startGame,
-        quitGame
+        quitGame,
+        getData
     }
 }

@@ -19,7 +19,7 @@ export default function PainelUsers() {
                         className="aba-header"
                         name="group"
                     />
-                    <div onClick={() => toggleAba(0)} className={"aba " + (abaActive == 0 ? "active" : "")}>Users Online</div>
+                    <div onClick={() => toggleAba(0)} className={"aba " + (abaActive == 0 ? "active" : "")}>Online</div>
                     <div onClick={() => toggleAba(1)} className={"aba " + (abaActive == 1 ? "active" : "")}>Friends</div>
                 </div>
                 {abaActive == 0 ? (<>

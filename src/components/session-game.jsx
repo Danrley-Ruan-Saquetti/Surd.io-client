@@ -26,7 +26,7 @@ export default function GameSession() {
         <>
             <div className="app-game">
                 <MenuGame />
-                <ChatGame />
+                {/* <ChatGame /> */}
             </div>
         </>
     )

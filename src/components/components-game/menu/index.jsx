@@ -20,6 +20,11 @@ export default function MenuGame() {
                     redirectPage("/home")
                 }
             })
+        },
+        getData: () => {
+            userService.getData(res => {
+                console.log(res);
+            })
         }
     }
 
@@ -36,6 +41,16 @@ export default function MenuGame() {
                         direction="right"
                         className="action leave"
                         onClick={actions.leave}
+                    />
+                    <Tooltip
+                        content={<><Icon
+                            name="close"
+                            className="action-icon"
+                        /></>}
+                        tooltipMsg="Get Data"
+                        direction="right"
+                        className="action data"
+                        onClick={actions.getData}
                     />
                 </div>
             </div>
