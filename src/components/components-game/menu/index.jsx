@@ -2,6 +2,7 @@ import Tooltip from "../../templates/tooltip"
 import Icon from "../../templates/icon"
 import { useNavigate } from "react-router-dom"
 import { UserService } from "../../../services/user.service.js"
+import dataGame from "../../../services/data-game.js"
 import "./style.css"
 
 const userService = UserService()
@@ -16,6 +17,7 @@ export default function MenuGame() {
     const actions = {
         leave: () => {
             userService.quitGame(null, res => {
+                console.log(res);
                 if (res.success) {
                     redirectPage("/home")
                 }
@@ -23,7 +25,9 @@ export default function MenuGame() {
         },
         getData: () => {
             userService.getData(res => {
+                console.log("");
                 console.log(res);
+                console.log(dataGame.getData());
             })
         }
     }

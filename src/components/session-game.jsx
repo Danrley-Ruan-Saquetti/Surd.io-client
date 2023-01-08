@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { currentUser } from "../services/auth.service"
+import CanvasGame from "./components-game/canvas"
 import ChatGame from "./components-game/chat"
 import MenuGame from "./components-game/menu"
 import "./session-styles/game.css"
@@ -27,6 +28,7 @@ export default function GameSession() {
             <div className="app-game">
                 <MenuGame />
                 {/* <ChatGame /> */}
+                <CanvasGame />
             </div>
         </>
     )
