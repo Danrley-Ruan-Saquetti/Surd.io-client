@@ -1,43 +1,51 @@
-import { socket } from "./socket.js"
-
 function DataGame() {
-    const data = { players: {} }
+    const data = { players: {}, xps: {} }
 
     const getData = () => { return data }
 
     // Data
     const resetData = () => {
         data.players = {}
+        data.xps = {}
     }
 
-    const startData = ({ players }) => {
+    const startData = ({ players, xps }) => {
         resetData()
         data.players = players
-
-        console.log("startData", data);
+        data.xps = xps
     }
 
     // Player
     const addPlayer = ({ player }) => {
-        data.players[`${player._id}`] = player
-
-        console.log("addPlayer", data);
+        data.players[`${player.idSocket}`] = player
     }
 
     const removePlayer = ({ player }) => {
-        delete data.players[`${player._id}`]
-
-        console.log("removePlayer", data);
+        delete data.players[`${player.idSocket}`]
     }
 
-    socket.on("$/games/players/current/data", startData)
-    socket.on("$/games/players/connected", addPlayer)
-    socket.on("$/games/players/disconnected", removePlayer)
+    const updatePlayer = ({ player }) => {
+        data.players[`${player.idSocket}`] = player
+    }
+
+    // Xp
+    const addXp = ({ xp }) => {
+        data.xps[`${xp.idSocket}`] = xp
+    }
+
+    const removeXp = ({ xp }) => {
+        delete data.xps[`${xp.idSocket}`]
+    }
 
     return {
         getData,
         startData,
         resetData,
+        addPlayer,
+        removePlayer,
+        updatePlayer,
+        addXp,
+        removeXp,
     }
 }
 

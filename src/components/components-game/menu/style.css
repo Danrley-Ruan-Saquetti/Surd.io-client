@@ -4,6 +4,7 @@
   left: 1rem;
   width: 5rem;
   background-color: #222222;
+  z-index: 50;
 }
 .menu-game-content .menu-game-actions {
   display: flex;

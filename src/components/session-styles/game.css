@@ -8,4 +8,8 @@
   left: 0;
   top: 0;
   background-color: #fff;
+  z-index: 10;
+  -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: pixelated;
 }/*# sourceMappingURL=game.css.map */

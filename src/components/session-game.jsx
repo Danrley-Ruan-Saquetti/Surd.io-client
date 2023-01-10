@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { currentUser } from "../services/auth.service"
+import { currentUser } from "../services/auth.service.js"
 import CanvasGame from "./components-game/canvas"
 import ChatGame from "./components-game/chat"
 import MenuGame from "./components-game/menu"

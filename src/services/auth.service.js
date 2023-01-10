@@ -49,7 +49,8 @@ export function AuthService() {
                 updateItem(data.user)
             }
             if (data.error) {
-                removeItem(true)
+                console.log(data);
+                removeItem()
             }
 
             res(data)
