@@ -59,30 +59,35 @@ export default function CanvasGame() {
     const draw = () => {
         drawRect(0, 0, GET_DIMENSION_CANVAS.width(), GET_DIMENSION_CANVAS.height())
 
-        drawPlayers()
+        const { map } = dataGame.getData()
+
+        drawRect(0, 0, map.dimension.width, map.dimension.height, "#000")
+        drawRect(1, 1, map.dimension.width - 1, map.dimension.height - 1, "#fff")
+
         drawXps()
+        drawPlayers()
     }
 
     const drawPlayers = () => {
-        Object.keys(dataGame.getData().players).map(key => {
-            const player = dataGame.getData().players[key]
+        for (let i = 0; i < dataGame.getData().players.length; i++) {
+            const player = dataGame.getData().players[i];
 
-            if (player._id == user._id) { return }
+            if (player._id == user._id) { continue }
 
             drawRect({ x: player.position.x, y: player.position.y, width: player.dimension.width, height: player.dimension.height, color: "#727272" })
-        })
+        }
 
-        const thisPlayer = dataGame.getData().players[socket.id]
+        const { player: thisPlayer } = dataGame.getPlayer({ idSocket: socket.id })
 
         drawRect({ x: thisPlayer.position.x, y: thisPlayer.position.y, width: thisPlayer.dimension.width, height: thisPlayer.dimension.height, color: "#ff0000" })
     }
 
     const drawXps = () => {
-        Object.keys(dataGame.getData().xps).map(key => {
-            const xp = dataGame.getData().xps[key]
+        for (let i = 0; i < dataGame.getData().xps.length; i++) {
+            const xp = dataGame.getData().xps[i];
 
             drawRect({ x: xp.position.x, y: xp.position.y, width: xp.dimension.width, height: xp.dimension.height, color: "yellow" })
-        })
+        }
     }
 
     useEffect(() => {

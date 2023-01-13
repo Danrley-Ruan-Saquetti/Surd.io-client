@@ -176,6 +176,10 @@ export function UserService() {
         })
     }
 
+    const upgradePU = (req) => {
+        socket.emit("games/players/power-ups/upgrade", {...authService.getToken(), ...req })
+    }
+
     const getData = (res = () => {}) => {
         socket.emit("games/data", {...authService.getToken() })
 
@@ -204,6 +208,7 @@ export function UserService() {
         getServers,
         startGame,
         quitGame,
-        getData
+        getData,
+        upgradePU,
     }
 }

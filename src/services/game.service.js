@@ -49,14 +49,24 @@ export default function GameService() {
         dataGame.addXp(data)
     }
 
+    const addXps = (data) => {
+        dataGame.addXps(data)
+    }
+
     const removeXp = (data) => {
         dataGame.removeXp(data)
     }
 
     socket.on("$/games/players/current/data", initComponents)
+    socket.on("$/games/players/current/level-up", (data) => {
+        console.log("level up!", { level: data.player.level, xp: data.player.xp, xpUpLevel: data.player.xpUpLevel })
+        updatePlayer(data)
+    })
     socket.on("$/games/players/new", addPlayer)
     socket.on("$/games/players/quit", removePlayer)
     socket.on("$/games/players/move", updatePlayer)
+    socket.on("$/games/players/update", updatePlayer)
     socket.on("$/games/xps/create", addXp)
+    socket.on("$/games/xps/update", addXps)
     socket.on("$/games/xps/remove", removeXp)
 }
