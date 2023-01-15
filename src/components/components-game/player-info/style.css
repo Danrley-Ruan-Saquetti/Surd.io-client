@@ -1,0 +1,20 @@
+.app-game .player-info-content {
+  position: absolute;
+  width: 35%;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  color: #000;
+}
+.app-game .player-info-content .player-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.app-game .player-info-content .player-header .user-identification .level {
+  color: #fff;
+}
+.app-game .player-info-content .player-header .bar-indicator-content.hp .indicator-content .indicator {
+  background-color: #09ff00;
+}/*# sourceMappingURL=style.css.map */

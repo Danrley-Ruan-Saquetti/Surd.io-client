@@ -1,3 +1,5 @@
+import { socket } from "./socket.js"
+
 function DataGame() {
     const data = { players: [], xps: [], map: { dimension: { width: 0, height: 0 } }, idServer: null, powerUp: { lengthUpgradesPU: 0 } }
 
@@ -34,6 +36,12 @@ function DataGame() {
 
             return { player: null, index: -1 }
         }())
+
+        return response
+    }
+
+    const getCurrentPlayer = () => {
+        const response = getPlayer({ idSocket: socket.id })
 
         return response
     }
@@ -102,6 +110,7 @@ function DataGame() {
         addXps,
         removeXp,
         getPlayer,
+        getCurrentPlayer,
     }
 }
 

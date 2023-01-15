@@ -11,7 +11,7 @@ export default function UpgradePanel() {
         { value: "damage", content: "Damage", level: { value: powerUps["damage"] || 0 } },
         { value: "criticalDamage", content: "Critical Damage", level: { value: powerUps["criticalDamage"] || 0 } },
         { value: "defense", content: "Defense", level: { value: powerUps["defense"] || 0 } },
-        { value: "health", content: "Health", level: { value: powerUps["health"] || 0 } },
+        { value: "hp", content: "Hp", level: { value: powerUps["hp"] || 0 } },
         { value: "size", content: "Size", level: { value: powerUps["size"] || 0 } },
         { value: "speed", content: "Speed", level: { value: powerUps["speed"] || 0 } },
         { value: "projectileSpeed", content: "Projectile Speed", level: { value: powerUps["projectileSpeed"] || 0 } },
@@ -32,8 +32,6 @@ export default function UpgradePanel() {
     const updatePU = ({ data = "" }) => {
         userService.upgradePU({ data, idServer: dataGame.getData().idServer })
     }
-
-    console.log(mapPU);
 
     return (
         <>
