@@ -1,11 +1,14 @@
+import useCurrentPlayer from "../../../hooks/useCurrentPlayer"
 import useListPowerUps from "../../../hooks/useListPowerUps"
 import dataGame from "../../../services/data-game.js"
 import { UserService } from "../../../services/user.service.js"
 import Icon from "../../templates/icon"
+import "./style.css"
 
 const userService = UserService()
 
 export default function UpgradePanel() {
+    const [player] = useCurrentPlayer()
     const [powerUps] = useListPowerUps()
     const mapPU = [
         { value: "damage", content: "Damage", level: { value: powerUps["damage"] || 0 } },
@@ -35,7 +38,8 @@ export default function UpgradePanel() {
 
     return (
         <>
-            <div className="panel-update-content">
+            <div className={"panel-update-content " + (player.upgradesPU > 0 ? "active" : "")}>
+                {player.upgradesPU > 0 && (<div className="length-update">+{player.upgradesPU}</div>)}
                 <div className="power-ups-content">
                     {mapPU.map((pu, i) => {
                         return <div key={i} className="power-up">

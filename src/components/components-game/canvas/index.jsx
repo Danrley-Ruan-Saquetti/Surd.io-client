@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import dataGame from "../../../services/data-game.js"
 import GameService from "../../../services/game.service.js"
+import "./style.css"
 
 const gameService = GameService()
 

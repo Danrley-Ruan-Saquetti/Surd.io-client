@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { currentUser } from "../services/auth.service.js"
 import CanvasGame from "./components-game/canvas"
 import ChatGame from "./components-game/chat"
+import ListRanking from "./components-game/list-ranking/index.jsx"
 import MenuGame from "./components-game/menu"
 import PlayerInfo from "./components-game/player-info/index.jsx"
 import UpgradePanel from "./components-game/upgrade/index.jsx"
@@ -32,6 +33,7 @@ export default function GameSession() {
                 <UpgradePanel />
                 <PlayerInfo />
                 {/* <ChatGame /> */}
+                <ListRanking />
                 <CanvasGame />
             </div>
         </>
