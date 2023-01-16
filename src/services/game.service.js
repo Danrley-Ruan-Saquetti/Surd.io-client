@@ -57,6 +57,19 @@ export default function GameService() {
         dataGame.removeXp(data)
     }
 
+    // Potion
+    const addPotion = (data) => {
+        dataGame.addPotion(data)
+    }
+
+    const addPotions = (data) => {
+        dataGame.addPotions(data)
+    }
+
+    const removePotion = (data) => {
+        dataGame.removePotion(data)
+    }
+
     socket.on("$/games/players/current/data", initComponents)
     socket.on("$/games/players/current/level-up", updatePlayer)
     socket.on("$/games/players/current/upgrade", updatePlayer)
@@ -67,4 +80,7 @@ export default function GameService() {
     socket.on("$/games/xps/create", addXp)
     socket.on("$/games/xps/update", addXps)
     socket.on("$/games/xps/remove", removeXp)
+    socket.on("$/games/potions/create", addPotion)
+    socket.on("$/games/potions/update", addPotions)
+    socket.on("$/games/potions/remove", removePotion)
 }

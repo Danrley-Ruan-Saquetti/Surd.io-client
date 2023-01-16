@@ -8,6 +8,7 @@ const authService = AuthService()
 export default function useCurrentUser() {
     const [, setCurrentUser] = useLocalStorage("user", authService.getCurrentUser().user)
     const [user, setUser] = useState(currentUser.user)
+    const [isPlaying, setIsPlaying] = useState(currentUser.user.isPlaying)
 
     const updateCurrentUser = (data) => {
         if (!data || !data.user) { return }
@@ -17,14 +18,32 @@ export default function useCurrentUser() {
         currentUser.user = data.user
     }
 
+    const updateIsPlaying = (value) => {
+        setIsPlaying(value)
+        currentUser.user.isPlaying = value
+    }
+
     const [] = UseEvents({
         observer: updateCurrentUser,
         events: [
             { ev: "$/users/current/update" },
-            { ev: "$/users/current/update/serverConnected" }
+            { ev: "$/users/current/update/serverConnected" },
         ],
         options: { $uniqueObserver: true }
     })
 
-    return [user]
+    const [] = UseEvents({
+        observer: (res) => updateIsPlaying(!(!res.success)),
+        events: [
+            { ev: "games/start/res" },
+            { ev: "games/quit/res" },
+        ],
+        options: {
+            $uniqueObserver: true,
+            $alreadyExecuteObserver: false,
+            $useAuthenticate: false
+        }
+    })
+
+    return [user, isPlaying]
 }

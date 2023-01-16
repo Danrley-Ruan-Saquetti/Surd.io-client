@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import useCurrentUser from "./hooks/useCurrentUser.js"
+import UseEvents from "./hooks/useEvents.js"
 import { AuthService } from "./services/auth.service.js"
 import { UserService } from "./services/user.service.js"
 
@@ -32,6 +33,18 @@ export default function Preload(props) {
             })
         }
     }
+
+    const [] = UseEvents({
+        observer: () => {
+            redirectPage("/user-disconnected")
+        },
+        events: [{ ev: "disconnect" }],
+        options: {
+            $uniqueObserver: true,
+            $alreadyExecuteObserver: false,
+            $useAuthenticate: false
+        }
+    })
 
     useEffect(() => {
         verifyIsLogged()

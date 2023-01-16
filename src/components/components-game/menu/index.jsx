@@ -17,7 +17,6 @@ export default function MenuGame() {
     const actions = {
         leave: () => {
             userService.quitGame(null, res => {
-                console.log(res);
                 if (res.success) {
                     redirectPage("/home")
                 }

@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import useCurrentUser from "../../../hooks/useCurrentUser.js"
 import dataGame from "../../../services/data-game.js"
 import GameService from "../../../services/game.service.js"
 import "./style.css"
@@ -8,17 +9,17 @@ const gameService = GameService()
 const PX_CANVAS_UPDATE = 5
 
 export default function CanvasGame() {
+    const [, isPlaying] = useCurrentUser()
+
     let canvas = document.getElementById("canvas")
     let ctx
 
-    let running = false
-
     const startRender = () => {
         canvas = document.getElementById("canvas")
-        if (!canvas) { return }
-        ctx = canvas.getContext("2d")
 
-        running = true
+        if (!canvas) { return }
+
+        ctx = canvas.getContext("2d")
 
         window.addEventListener("resize", resizeCanvas)
 
@@ -146,10 +147,16 @@ export default function CanvasGame() {
 
     // Update
     const animate = () => {
-        if ((GET_DIMENSION_CANVAS.width() != GET_REAL_DIMENSION_CANVAS.width()) || (GET_DIMENSION_CANVAS.height() != GET_REAL_DIMENSION_CANVAS.height())) { updateDimensionCanvas() }
+        if (!isPlaying) { return }
 
-        draw()
-        running && requestAnimationFrame(animate)
+        try {
+            if ((GET_DIMENSION_CANVAS.width() != GET_REAL_DIMENSION_CANVAS.width()) || (GET_DIMENSION_CANVAS.height() != GET_REAL_DIMENSION_CANVAS.height())) { updateDimensionCanvas() }
+
+            draw()
+            requestAnimationFrame(animate)
+        } catch (err) {
+            return
+        }
     }
 
     // Draw
@@ -166,6 +173,7 @@ export default function CanvasGame() {
     const draw = () => {
         ctx.clearRect(0, 0, GET_DIMENSION_CANVAS.width(), GET_DIMENSION_CANVAS.height());
         drawXps()
+        drawPotions()
         drawPlayers()
     }
 
@@ -188,6 +196,14 @@ export default function CanvasGame() {
             const xp = dataGame.getData().xps[i];
 
             drawRect(xp, "yellow")
+        }
+    }
+
+    const drawPotions = () => {
+        for (let i = 0; i < dataGame.getData().potions.length; i++) {
+            const potion = dataGame.getData().potions[i];
+
+            drawRect(potion, "blue")
         }
     }
 

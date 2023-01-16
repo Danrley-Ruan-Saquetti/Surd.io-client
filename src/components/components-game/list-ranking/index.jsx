@@ -14,7 +14,7 @@ export default function ListRanking() {
                 <div className="list-players-ranked">
                     {ranking.length != 0 && ranking.map((pR, i) => {
                         return <div key={pR.idSocket} className={"player-ranked " + (dataGame.getCurrentPlayer().player.idSocket == pR.idSocket ? "this" : "")}>
-                            <span className="pr-info"><span className="pr-placing">{i}</span><span className="pr-username">{pR.username}</span></span>
+                            <span className="pr-info"><span className="pr-placing">{i + 1}º</span><span className="pr-username">{pR.username}</span></span>
                             <span className="pr-points">{pR.points}</span>
                         </div>
                     })}

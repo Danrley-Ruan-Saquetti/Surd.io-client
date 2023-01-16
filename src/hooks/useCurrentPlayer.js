@@ -18,6 +18,7 @@ export default function useCurrentPlayer() {
             { ev: "$/games/players/current/level-up" },
             { ev: "$/games/players/current/upgrade" },
             { ev: "$/games/players/current/earn-xp" },
+            { ev: "$/games/players/current/earn-potion" },
         ],
         options: {
             $uniqueObserver: true,

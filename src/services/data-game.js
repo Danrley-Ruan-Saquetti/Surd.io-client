@@ -1,24 +1,33 @@
 import { socket } from "./socket.js"
 
 function DataGame() {
-    const data = { players: [], xps: [], map: { dimension: { width: 0, height: 0 } }, idServer: null, powerUp: { lengthUpgradesPU: 0 } }
-
-    const getData = () => { return data }
+    const data = {
+        idServer: null,
+        map: { dimension: { width: 0, height: 0 } },
+        players: [],
+        xps: [],
+        potions: [],
+        powerUp: { lengthUpgradesPU: 0 }
+    }
 
     // Data
+    const getData = () => { return data }
+
     const resetData = () => {
         data.players = []
         data.xps = []
+        data.potions = []
         data.map = { dimension: { width: 0, height: 0 } }
         data.idServer = null
         data.powerUp = { lengthUpgradesPU: 0 }
     }
 
-    const startData = ({ players, xps, map, _id, powerUp }) => {
+    const startData = ({ players, xps, potions, map, _id, powerUp }) => {
         resetData()
         data.idServer = _id
         data.players = players
         data.xps = xps
+        data.potions = potions
         data.map = map
         data.powerUp = powerUp
     }
@@ -99,18 +108,55 @@ function DataGame() {
         data.xps.splice(index, 1)
     }
 
+    // Potion
+    const getPotion = ({ _id }) => {
+        const response = (function() {
+            for (let i = 0; i < data.potions.length; i++) {
+                const potion = data.potions[i]
+
+                if (potion._id != _id) { continue }
+
+                return { potion, index: i }
+            }
+
+            return { potion: null, index: -1 }
+        }())
+
+        return response
+    }
+
+    const addPotion = ({ potion }) => {
+        data.potions.push(potion)
+    }
+
+    const addPotions = ({ potions }) => {
+        data.potions = potions
+    }
+
+    const removePotion = ({ potion }) => {
+        const { index } = getPotion(potion)
+
+        if (index == -1) { return }
+
+        data.potions.splice(index, 1)
+    }
+
     return {
         getData,
         startData,
         resetData,
+        getPlayer,
+        getCurrentPlayer,
         addPlayer,
         removePlayer,
         updatePlayer,
         addXp,
         addXps,
         removeXp,
-        getPlayer,
-        getCurrentPlayer,
+        getPotion,
+        addPotion,
+        addPotions,
+        removePotion,
     }
 }
 
