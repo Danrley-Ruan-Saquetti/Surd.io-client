@@ -1,15 +1,18 @@
 .app-game .panel-update-content {
   position: absolute;
-  width: 40%;
-  width: 25rem;
+  width: 18rem;
+  max-width: 33.3%;
   left: 1rem;
   bottom: 1rem;
+  font-size: 1.3rem;
   z-index: 50;
   background-color: rgba(34, 34, 34, 0.75);
   opacity: 0.75;
+  pointer-events: none;
 }
 .app-game .panel-update-content.active {
   opacity: 1;
+  pointer-events: all;
 }
 .app-game .panel-update-content .length-update {
   position: absolute;

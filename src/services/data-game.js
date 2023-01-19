@@ -7,29 +7,41 @@ function DataGame() {
         players: [],
         xps: [],
         potions: [],
-        powerUp: { lengthUpgradesPU: 0 }
+        projectiles: [],
+        powerUp: { lengthUpgradesPU: 0 },
+        keysValid: [],
+        canvas: document.getElementById("")
     }
 
     // Data
     const getData = () => { return data }
 
     const resetData = () => {
+        data.idServer = null
         data.players = []
         data.xps = []
         data.potions = []
+        data.projectiles = []
+        data.keysValid = []
         data.map = { dimension: { width: 0, height: 0 } }
-        data.idServer = null
         data.powerUp = { lengthUpgradesPU: 0 }
+        data.canvas = document.getElementById("")
     }
 
-    const startData = ({ players, xps, potions, map, _id, powerUp }) => {
+    const startData = ({ players, xps, potions, projectiles, map, _id, powerUp, mapKeys }) => {
         resetData()
         data.idServer = _id
         data.players = players
         data.xps = xps
         data.potions = potions
+        data.projectiles = projectiles
         data.map = map
         data.powerUp = powerUp
+        data.keysValid = mapKeys
+    }
+
+    const updateCanvas = () => {
+        data.canvas = document.getElementById("canvas")
     }
 
     // Player
@@ -141,6 +153,47 @@ function DataGame() {
         data.potions.splice(index, 1)
     }
 
+    // Projectile
+    const getProjectile = ({ _id }) => {
+        const response = (function() {
+            for (let i = 0; i < data.projectiles.length; i++) {
+                const projectile = data.projectiles[i]
+
+                if (projectile._id != _id) { continue }
+
+                return { projectile, index: i }
+            }
+
+            return { projectile: null, index: -1 }
+        }())
+
+        return response
+    }
+
+    const addProjectile = ({ projectile }) => {
+        data.projectiles.push(projectile)
+    }
+
+    const addProjectiles = ({ projectiles }) => {
+        data.projectiles = projectiles
+    }
+
+    const removeProjectile = ({ projectile }) => {
+        const { index } = getProjectile(projectile)
+
+        if (index == -1) { return }
+
+        data.projectiles.splice(index, 1)
+    }
+
+    const updateProjectile = ({ projectile }) => {
+        const { index } = getProjectile(projectile)
+
+        if (index == -1) { return }
+
+        data.projectiles[index] = projectile
+    }
+
     return {
         getData,
         startData,
@@ -157,6 +210,12 @@ function DataGame() {
         addPotion,
         addPotions,
         removePotion,
+        updateCanvas,
+        getProjectile,
+        addProjectile,
+        addProjectiles,
+        removeProjectile,
+        updateProjectile,
     }
 }
 

@@ -5,14 +5,16 @@
         flex-direction: column;
         gap: .5rem;
         width: 30%;
-        max-width: 13rem;
+        max-width: 18rem;
         top: 1rem;
         right: 1rem;
         background-color: rgba($color: #222222, $alpha: .75);
         z-index: 50;
         padding: 1rem;
+        pointer-events: none;
         .info-list-ranking {
             font-size: 1.75rem;
+            text-align: center;
         }
         .list-players-ranked {
             .player-ranked {
@@ -41,13 +43,13 @@
                     }
                 }
                 .pr-points {
-                    width: 20%;
                     text-align: end;
                 }
             }
         }
         .info-players-online {
             font-size: 1.35rem;
+            text-align: center;
         }
     }
 }

@@ -21,7 +21,7 @@ export default function UseEvents({
         options.$useAuthenticate = true
     }
 
-    const [] = useAuthenticate(() => {
+    const [isAuthenticate] = useAuthenticate(() => {
         if (!options.$useAuthenticate) { return }
         observer()
     })
@@ -42,5 +42,5 @@ export default function UseEvents({
         }
     }, [])
 
-    return []
+    return [isAuthenticate]
 }

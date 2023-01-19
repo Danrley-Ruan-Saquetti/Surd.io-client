@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import useCurrentUser from "../hooks/useCurrentUser.js"
+import GameService from "../services/game.service.js"
 import CanvasGame from "./components-game/canvas"
 import ChatGame from "./components-game/chat"
 import ListRanking from "./components-game/list-ranking/index.jsx"
@@ -9,12 +10,20 @@ import PlayerInfo from "./components-game/player-info/index.jsx"
 import UpgradePanel from "./components-game/upgrade/index.jsx"
 import "./session-styles/game.css"
 
+const gameService = GameService()
+
 export default function GameSession() {
     const [, isPlaying] = useCurrentUser()
     const navigate = useNavigate()
 
     const redirectPage = (url) => {
         navigate(url)
+    }
+
+    const initComponents = () => {
+        if (isPlaying) {
+            gameService.initComponents()
+        }
     }
 
     const verifyIsPlaying = () => {
@@ -25,6 +34,7 @@ export default function GameSession() {
 
     useEffect(() => {
         verifyIsPlaying()
+        initComponents()
     }, [])
 
     return (
@@ -32,11 +42,11 @@ export default function GameSession() {
             <div className="app-game">
                 {isPlaying && (<>
                     <MenuGame />
-                    <UpgradePanel />
                     <ListRanking />
+                    <UpgradePanel />
                     <PlayerInfo />
+                    <ChatGame />
                     <CanvasGame />
-                    {/* <ChatGame /> */}
                 </>)}
             </div>
         </>

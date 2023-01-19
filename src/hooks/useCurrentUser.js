@@ -23,7 +23,7 @@ export default function useCurrentUser() {
         currentUser.user.isPlaying = value
     }
 
-    const [] = UseEvents({
+    const [isAuthenticate] = UseEvents({
         observer: updateCurrentUser,
         events: [
             { ev: "$/users/current/update" },

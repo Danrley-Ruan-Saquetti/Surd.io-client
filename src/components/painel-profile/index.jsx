@@ -49,7 +49,7 @@ export default function PainelProfile() {
                             <span className="statistic"><span className="statistics-in">Active since:</span> <div className="statistics-value">{(function () {
                                 const date = new Date(currentUser.createAt)
 
-                                return `${date.getFullYear()}-${date.getMonth()}-${("00" + date.getDay()).slice(-2)}`
+                                return `${date.getFullYear()}-${("00" + (date.getMonth() + 1)).slice(-2)}-${("00" + date.getDay()).slice(-2)}`
                             }())}</div></span>
                             <span className="statistic"><span className="statistics-in">Coins:</span> <div className="statistics-value">0</div></span>
                         </div>

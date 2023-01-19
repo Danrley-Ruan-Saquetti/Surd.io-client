@@ -38,7 +38,25 @@ export default function Preload(props) {
         observer: () => {
             redirectPage("/user-disconnected")
         },
-        events: [{ ev: "disconnect" }],
+        events: [
+            { ev: "disconnect" },
+            { ev: "connect_error" }
+        ],
+        options: {
+            $uniqueObserver: true,
+            $alreadyExecuteObserver: false,
+            $useAuthenticate: false
+        }
+    })
+    const [] = UseEvents({
+        observer: (data) => {
+            if (data.error) {
+                redirectPage("/auth/login")
+            }
+        },
+        events: [
+            { ev: "auth/login/reconnect/res" },
+        ],
         options: {
             $uniqueObserver: true,
             $alreadyExecuteObserver: false,

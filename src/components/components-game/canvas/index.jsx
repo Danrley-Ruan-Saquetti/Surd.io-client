@@ -1,10 +1,7 @@
 import { useEffect } from "react"
 import useCurrentUser from "../../../hooks/useCurrentUser.js"
 import dataGame from "../../../services/data-game.js"
-import GameService from "../../../services/game.service.js"
 import "./style.css"
-
-const gameService = GameService()
 
 const PX_CANVAS_UPDATE = 5
 
@@ -18,6 +15,8 @@ export default function CanvasGame() {
         canvas = document.getElementById("canvas")
 
         if (!canvas) { return }
+
+        dataGame.updateCanvas()
 
         ctx = canvas.getContext("2d")
 
@@ -166,15 +165,24 @@ export default function CanvasGame() {
         const width = dimension.width
         const height = dimension.height
 
+        if (x + width < 0 || x > GET_DIMENSION_CANVAS.width()) { return }
+
+        if (y + height < 0 || y > GET_DIMENSION_CANVAS.height()) { return }
+
         ctx.fillStyle = color
         ctx.fillRect(x, y, width, height)
     }
 
     const draw = () => {
-        ctx.clearRect(0, 0, GET_DIMENSION_CANVAS.width(), GET_DIMENSION_CANVAS.height());
+        drawMap()
         drawXps()
         drawPotions()
         drawPlayers()
+        drawProjectiles()
+    }
+
+    const drawMap = () => {
+        ctx.clearRect(0, 0, GET_DIMENSION_CANVAS.width(), GET_DIMENSION_CANVAS.height());
     }
 
     const drawPlayers = () => {
@@ -204,6 +212,14 @@ export default function CanvasGame() {
             const potion = dataGame.getData().potions[i];
 
             drawRect(potion, "blue")
+        }
+    }
+
+    const drawProjectiles = () => {
+        for (let i = 0; i < dataGame.getData().projectiles.length; i++) {
+            const projectile = dataGame.getData().projectiles[i];
+
+            drawRect({ ...projectile, dimension: { width: projectile.size, height: projectile.size } }, "#000")
         }
     }
 

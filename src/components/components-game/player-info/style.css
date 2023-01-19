@@ -1,11 +1,12 @@
 .app-game .player-info-content {
   position: absolute;
-  width: 35%;
+  width: 30%;
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 60;
   color: #000;
+  pointer-events: none;
 }
 .app-game .player-info-content .player-header {
   display: flex;
