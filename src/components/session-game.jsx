@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import useCurrentUser from "../hooks/useCurrentUser.js"
+import UseEvents from "../hooks/useEvents.js"
 import GameService from "../services/game.service.js"
 import CanvasGame from "./components-game/canvas"
 import ChatGame from "./components-game/chat"
@@ -31,6 +32,18 @@ export default function GameSession() {
             redirectPage("/home")
         }
     }
+
+    const [] = UseEvents({
+        observer: () => {
+            redirectPage("/home")
+        },
+        events: [{ ev: "$/games/players/current/game-over" }],
+        options: {
+            $alreadyExecuteObserver: false,
+            $uniqueObserver: true,
+            $useAuthenticate: false
+        }
+    })
 
     useEffect(() => {
         verifyIsPlaying()
