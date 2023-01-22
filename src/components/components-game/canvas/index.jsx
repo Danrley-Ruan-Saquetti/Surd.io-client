@@ -31,9 +31,9 @@ export default function CanvasGame() {
     }
 
     // Camera
-    const getPosition = (posObject) => {
-        const x = posObject.x - getXMaster()
-        const y = posObject.y - getYMaster()
+    const getPosition = (positionObject) => {
+        const x = positionObject.x - getXMaster()
+        const y = positionObject.y - getYMaster()
 
         return { x, y }
     }
@@ -159,9 +159,17 @@ export default function CanvasGame() {
     }
 
     // Draw
+    const drawArc = ({ position, size }, color) => {
+        const { x, y } = getPosition(position)
+
+        ctx.beginPath()
+        ctx.arc(x, y, size, 0, Math.PI * 2, false)
+        ctx.fillStyle = color
+        ctx.fill()
+    }
+
     const drawRect = ({ position, dimension }, color = "#fff") => {
-        const x = position.x - getXMaster()
-        const y = position.y - getYMaster()
+        const { x, y } = getPosition(position)
         const width = dimension.width
         const height = dimension.height
 
@@ -219,7 +227,7 @@ export default function CanvasGame() {
         for (let i = 0; i < dataGame.getData().projectiles.length; i++) {
             const projectile = dataGame.getData().projectiles[i];
 
-            drawRect({ ...projectile, dimension: { width: projectile.size, height: projectile.size } }, "#000")
+            drawArc(projectile, "#000")
         }
     }
 
