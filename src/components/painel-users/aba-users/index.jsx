@@ -36,7 +36,7 @@ export default function AbaUsers() {
             <div className="list-users-content">
                 <div className="list-users">
                     {users.length != 0 ? users.map(user => {
-                        return <div key={user._id} className="user user-identification-content">
+                        return <div key={user._id} className={"user user-identification-content " + (currentUser._id == user._id ? "this" : "")}>
                             <span className="user-identification level-content">
                                 <span className="level sm">{user.level}</span>
                                 <span>{user.username}</span>

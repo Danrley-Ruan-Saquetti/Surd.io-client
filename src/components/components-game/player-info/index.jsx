@@ -1,7 +1,9 @@
 import useCurrentPlayer from "../../../hooks/useCurrentPlayer"
+import useLogGame from "../../../hooks/useLogGame"
 import "./style.css"
 
 export default function PlayerInfo() {
+    const [logGame] = useLogGame()
     const [player] = useCurrentPlayer()
 
     const calcXpPercentual = () => {
@@ -15,6 +17,11 @@ export default function PlayerInfo() {
     return (
         <>
             <div className="player-info-content">
+                <div className="log-game">
+                    {logGame.length > 0 && logGame.map((log, i) => {
+                        return <div key={i} className={"log " + (log.type)}>{log.content}</div>
+                    })}
+                </div>
                 <div className="player-header user-identification-content">
                     <span className="user-identification level-content">
                         <span className="level bg">{player.level}</span>

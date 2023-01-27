@@ -64,7 +64,7 @@ export default function PainelGame() {
                 <div className="list-servers-content">
                     <div className="list-servers">
                         {servers.length != 0 && servers.map(server => {
-                            return <div key={server._id} className="server" onClick={() => toggleServerSelected(server)}>
+                            return <div key={server._id} className={"server " + (idServerSelected == server._id ? "this" : "")} onClick={() => toggleServerSelected(server)}>
                                 <div className="server-info">
                                     <div className="server-name">{server.name}</div>
                                     <div className="server-players-online">{server.playersOnline} players online</div>

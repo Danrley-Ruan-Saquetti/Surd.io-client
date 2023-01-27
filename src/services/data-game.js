@@ -10,6 +10,7 @@ function DataGame() {
         projectiles: [],
         powerUp: { lengthUpgradesPU: 0 },
         keysValid: [],
+        log: [],
         canvas: document.getElementById("")
     }
 
@@ -23,6 +24,7 @@ function DataGame() {
         data.potions = []
         data.projectiles = []
         data.keysValid = []
+        data.log = []
         data.map = { dimension: { width: 0, height: 0 } }
         data.powerUp = { lengthUpgradesPU: 0 }
         data.canvas = document.getElementById("")
@@ -194,6 +196,17 @@ function DataGame() {
         data.projectiles[index] = projectile
     }
 
+    // Log
+    const addLog = (log = { content: "", type: "" }) => {
+        const index = data.log.length
+
+        data.log.push({...log, index })
+
+        setTimeout(() => {
+            data.log.splice(data.log.findIndex(l => { return l.index == index }), 1)
+        }, 1000 * 4)
+    }
+
     return {
         getData,
         startData,
@@ -216,6 +229,7 @@ function DataGame() {
         addProjectiles,
         removeProjectile,
         updateProjectile,
+        addLog,
     }
 }
 

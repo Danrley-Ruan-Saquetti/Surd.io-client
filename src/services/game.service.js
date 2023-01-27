@@ -120,7 +120,13 @@ export default function GameService() {
     }
 
     socket.on("$/games/players/current/data", initData)
-    socket.on("$/games/players/current/level-up", updatePlayer)
+    socket.on("$/games/players/current/level-up", (data) => {
+        dataGame.addLog({ content: "Level up!", type: "level" })
+        updatePlayer(data)
+    })
+    socket.on("$/games/players/current/earn-xp", (data) => {
+        dataGame.addLog({ content: `+${data.xp.value} xp`, type: "xp" })
+    })
     socket.on("$/games/players/current/upgrade", updatePlayer)
     socket.on("$/games/players/new", addPlayer)
     socket.on("$/games/players/quit", removePlayer)
