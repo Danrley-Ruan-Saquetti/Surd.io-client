@@ -1,0 +1,24 @@
+.bt {
+    padding: 1rem 2rem;
+    transition: var(--transition-color);
+    &.primary {
+        background-color: var(--primary-color);
+        color: var(--text-secondary-color);
+    }
+    &.secondary {
+        background-color: var(--secondary-color);
+        color: var(--text-secondary-color);
+    }
+    &.tertiary {
+        background-color: var(--tertiary-color);
+        color: var(--text-secondary-color);
+    }
+    &.quaternary {
+        background-color: var(--quaternary-color);
+        color: var(--text-secondary-color);
+    }
+    &.quintinary {
+        background-color: var(--quintinary-color);
+        color: var(--text-secondary-color);
+    }
+}

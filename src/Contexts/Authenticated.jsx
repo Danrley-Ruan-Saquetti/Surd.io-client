@@ -1,7 +1,9 @@
 import { createContext, useState } from "react";
 import UseEvents from "../hooks/useEvents"
+import AuthService from "../services/auth.service.js";
 
 const AuthenticateContext = createContext()
+const authService = AuthService()
 
 function AuthenticatedProvider({ children }) {
     const [authenticated, setAuthenticated] = useState(false)
@@ -20,6 +22,7 @@ function AuthenticatedProvider({ children }) {
 
     const successConnectionServer = () => {
         updateConnected(true)
+        authService.isUserLogged() && authService.reconnect()
     }
 
     const errorConnectionServer = () => {

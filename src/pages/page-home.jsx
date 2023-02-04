@@ -1,4 +1,4 @@
-import HomeSession from "../components/session-home";
+import HomeSession from "../components/sessions/home";
 import Preload from "../Preload";
 
 export default function HomePage() {

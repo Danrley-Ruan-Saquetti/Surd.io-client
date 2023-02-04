@@ -1,0 +1,40 @@
+.input-box-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    .input-box {
+        position: relative;
+        display: flex;
+        label {
+            pointer-events: none;
+            position: absolute;
+            transition: .5s;
+            transform: translateY(25%);
+        }
+        i {
+            pointer-events: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: var(--tertiary-color);
+            transition: .5s;
+        }
+        input {
+            width: 100%;
+            padding: 1rem;
+            z-index: 10;
+            color: var(--bg-primary-color);
+            &:focus,
+            &:valid {
+                ~label {
+                    transform: translate(-.6rem, -2rem) scale(.8);
+                }
+                ~i {
+                    height: 100%;
+                }
+            }
+        }
+    }
+}

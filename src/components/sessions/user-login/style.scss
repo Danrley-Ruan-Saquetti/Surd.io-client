@@ -1,0 +1,10 @@
+.session.user-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .form-login {
+        gap: 3rem;
+        width: 40rem;
+        max-width: 90%;
+    }
+}

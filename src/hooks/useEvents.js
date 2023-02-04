@@ -1,20 +1,9 @@
 import { useEffect } from "react"
-import { socket } from "../services/socket"
+import { socket } from "../services/socket.js"
 
-export default function UseEvents({
-    observer = (data) => { return },
-    events = [{ ev: "", observer: () => {} }],
-    options = {
-        $uniqueObserver: false,
-        $alreadyExecuteObserver: true
-    }
-}) {
-    if (typeof options.$uniqueObserver === "undefined") {
-        options.$uniqueObserver = false
-    }
-    if (typeof options.$alreadyExecuteObserver === "undefined") {
-        options.$alreadyExecuteObserver = true
-    }
+export default function UseEvents({ observer = () => {}, events = [{ ev: "", observer: () => {} }], options = { $uniqueObserver: false, $alreadyExecuteObserver: true } }) {
+    if (typeof options.$uniqueObserver === "undefined") { options.$uniqueObserver = false }
+    if (typeof options.$alreadyExecuteObserver === "undefined") { options.$alreadyExecuteObserver = true }
 
     useEffect(() => {
         events.forEach((ev) => {

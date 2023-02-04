@@ -1,4 +1,4 @@
-import ConnectionErrorSession from "../components/session-connection-error";
+import ConnectionErrorSession from "../components/sessions/connection-server-error";
 import Preload from "../Preload";
 
 export default function ConnectionErrorPage() {
