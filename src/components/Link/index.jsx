@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
-import "./style.css"
+import "./style.scss"
 
-export default function Link({ children, className = "", to = "/" }) {
+export default function Link({ children, className, to = "/" }) {
     const navigate = useNavigate()
 
     const redirect = () => {
@@ -10,7 +10,7 @@ export default function Link({ children, className = "", to = "/" }) {
 
     return (
         <>
-            <a onClick={redirect} className={"link " + className}>{children}</a>
+            <a onClick={redirect} className={"link" + (className ? ` ${className}` : "")}>{children}</a>
         </>
     )
 }

@@ -1,5 +1,6 @@
+@use "../../global" as *;
 form {
     padding: 2rem;
-    background-color: var(--bg-component-color);
-    border: var(--t-border);
+    background-color: $bg-component-color;
+    border: $border;
 }

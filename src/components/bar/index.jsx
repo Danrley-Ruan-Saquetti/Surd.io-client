@@ -1,10 +1,10 @@
-import "./style.css"
+import "./style.scss"
 
-export default function Bar({ className = "", children }) {
+export default function Bar({ className, children }) {
 
     return (
         <>
-            <div className={"bar " + className}>{children}</div>
+            <div className={"bar" + (className ? ` ${className}` : "")}>{children}</div>
         </>
     )
 }

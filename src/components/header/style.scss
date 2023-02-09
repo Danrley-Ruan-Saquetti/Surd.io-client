@@ -1,7 +1,13 @@
+@use "../../global" as *;
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 6rem;
+    height: 7rem;
     padding-inline: 3rem;
+    background-color: $primary-color-darkness;
+    color: $text-secondary-color;
+    .header-child {
+        width: 50%;
+    }
 }

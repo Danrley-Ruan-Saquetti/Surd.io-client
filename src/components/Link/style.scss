@@ -1,21 +1,8 @@
+@use "../../global" as *;
 .link {
-    color: var(--text-primary-color);
-    transition: var(--transition-color);
+    color: $text-tertiary-color;
+    transition: $transition-color;
     &:hover {
-        &.primary {
-            color: var(--primary-color);
-        }
-        &.secondary {
-            color: var(--secondary-color);
-        }
-        &.tertiary {
-            color: var(--tertiary-color);
-        }
-        &.quaternary {
-            color: var(--quaternary-color);
-        }
-        &.quintinary {
-            color: var(--quintinary-color);
-        }
+        color: $text-primary-color;
     }
 }

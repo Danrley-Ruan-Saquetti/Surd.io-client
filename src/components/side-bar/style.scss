@@ -1,0 +1,7 @@
+@use "../../global" as *;
+.side-bar {
+    width: 6rem;
+    height: 100%;
+    background-color: $bg-component-color;
+    border-right: $border;
+}

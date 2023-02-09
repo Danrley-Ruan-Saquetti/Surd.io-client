@@ -4,11 +4,11 @@ import ButtonContent from "../../button/content";
 import Form from "../../form";
 import Input from "../../form/input"
 import AuthService from "../../../services/auth.service.js"
-import "./style.css"
 import InputBox from "../../form/input-box";
 import Label from "../../form/label";
 import Link from "../../Link";
 import Icon from "../../icon";
+import "./style.scss"
 
 const authService = AuthService()
 
@@ -28,7 +28,7 @@ export default function UserLoginSession() {
     return (
         <>
             <main className="session user-login">
-                <Form className={"form-login prop flex cl"}>
+                <Form className={"form-login props flex cl"}>
                     <h2 className="form-info">Login</h2>
 
                     <div className="input-box-content">
@@ -49,7 +49,7 @@ export default function UserLoginSession() {
                     </div>
 
                     <ButtonContent>
-                        <Button className="tertiary icon-content" onClick={performLogin}>Login <Icon>login</Icon></Button>
+                        <Button className="primary icon-content" onClick={performLogin}>Login <Icon>login</Icon></Button>
                     </ButtonContent>
                 </Form>
             </main>

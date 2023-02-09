@@ -1,0 +1,9 @@
+@use "../../../global" as *;
+.indicator-bar {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    background-color: $quintinary-color;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+}

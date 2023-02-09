@@ -2,10 +2,10 @@ import { createContext, useState } from "react";
 import UseEvents from "../hooks/useEvents"
 import AuthService from "../services/auth.service.js";
 
-const AuthenticateContext = createContext()
+export const AuthenticateContext = createContext()
 const authService = AuthService()
 
-function AuthenticatedProvider({ children }) {
+export function AuthenticatedProvider({ children }) {
     const [authenticated, setAuthenticated] = useState(false)
     const [connected, setConnected] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
@@ -55,5 +55,3 @@ function AuthenticatedProvider({ children }) {
         </AuthenticateContext.Provider>
     )
 }
-
-export { AuthenticatedProvider, AuthenticateContext }

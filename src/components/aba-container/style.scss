@@ -1,3 +1,5 @@
+@use "../../global" as *;
 .aba-content {
-    border-bottom: var(--t-border);
+    display: flex;
+    border-bottom: $border;
 }

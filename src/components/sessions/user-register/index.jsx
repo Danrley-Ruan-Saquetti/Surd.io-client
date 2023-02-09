@@ -27,7 +27,7 @@ export default function UserRegisterSession() {
     return (
         <>
             <main className="session user-login">
-                <Form className={"form-login prop flex cl"}>
+                <Form className={"form-login props flex cl"}>
                     <h2 className="form-info">Register</h2>
 
                     <div className="input-box-content">

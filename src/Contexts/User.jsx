@@ -1,10 +1,10 @@
 import { createContext, useState } from "react";
 import UseEvents from "../hooks/useEvents";
 
-const UserContext = createContext()
+export const UserContext = createContext()
 
-function UserProvider({ children }) {
-    const [user, setUser] = useState({ _id: null, username: "Guest", level: 1 })
+export function UserProvider({ children }) {
+    const [user, setUser] = useState({ _id: null, username: "Guest", level: 1, xp: 0, xpUpLevel: 0 })
 
     const updateUser = ({ user: value }) => {
         setUser(value)
@@ -25,5 +25,3 @@ function UserProvider({ children }) {
         </UserContext.Provider>
     )
 }
-
-export { UserProvider, UserContext }

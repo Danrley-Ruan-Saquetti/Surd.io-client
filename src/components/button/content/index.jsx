@@ -1,10 +1,10 @@
-import "./style.css"
+import "./style.scss"
 
-export default function ButtonContent({ className = "", children }) {
+export default function ButtonContent({ className, children }) {
 
     return (
         <>
-            <div className={"button-content " + className}>{children}</div>
+            <div className={"button-content" + (className ? ` ${className}` : "")}>{children}</div>
         </>
     )
 }

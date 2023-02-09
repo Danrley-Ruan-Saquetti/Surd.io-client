@@ -1,19 +1,10 @@
+@use "../../../global" as *;
 .aba {
     width: 25%;
-    padding: 1rem 0;
+    padding-block: 1rem;
     transition: .3s;
     text-align: center;
     cursor: pointer;
-    transition: var(--transition-color);
-    &:hover {
-        background-color: var(--tertiary-color);
-        color: var(--text-secondary-color);
-    }
-    &.active {
-        background-color: var(--secondary-color-2);
-        color: var(--text-secondary-color);
-        &:hover {
-            background-color: var(--tertiary-color);
-        }
-    }
+    transition: $transition-color;
+    @include transitionColor;
 }

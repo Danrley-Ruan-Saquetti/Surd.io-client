@@ -1,6 +1,6 @@
-import "./style.css"
+import "./style.scss"
 
-export default function Label({ name, className = "", children }) {
+export default function Label({ name, className, children }) {
 
-    return <label className={"label-" + name + " " + className} htmlFor={"input-" + name}>{children}</label>
+    return <label className={"label-" + name + "" + (className ? ` ${className}` : "")} htmlFor={"input-" + name}>{children}</label>
 }

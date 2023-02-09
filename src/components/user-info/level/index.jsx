@@ -1,10 +1,10 @@
-import "./style.css"
+import "./style.scss"
 
-export default function Level({ children }) {
+export default function Level({ className, children }) {
 
     return (
         <>
-            <div className="level">{children}</div>
+            <div className={"level" + (className ? ` ${className}` : "")}>{children}</div>
         </>
     )
 }

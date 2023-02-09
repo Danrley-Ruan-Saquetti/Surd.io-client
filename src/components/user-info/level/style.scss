@@ -1,10 +1,16 @@
+@use "../../../global" as *;
 .level {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-inline: 1rem;
-    height: 3.5rem;
-    min-width: 3.5rem;
-    background-color: var(--neutro-color-2);
-    color: var(--text-secondary-color);
+    height: 3rem;
+    min-width: 3rem;
+    background-color: darken($primary-color-darkness, 10);
+    color: $text-secondary-color;
+    color: #fff;
+    &.large {
+        height: 3.5rem;
+        min-width: 3.5rem;
+    }
 }

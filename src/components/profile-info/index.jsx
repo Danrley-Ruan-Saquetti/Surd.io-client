@@ -1,10 +1,10 @@
-import "./style.css"
+import "./style.scss"
 
-export default function ProfileInfo({ className = "", children }) {
+export default function ProfileInfo({ className, children }) {
 
     return (
         <>
-            <div className={"profile-info " + className}>{children}</div>
+            <div className={"profile-info" + (className ? ` ${className}` : "")}>{children}</div>
         </>
     )
 }

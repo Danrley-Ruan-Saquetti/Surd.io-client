@@ -1,12 +1,10 @@
-import "./style.css"
+import "./style.scss"
 
-export default function AbaContent({ children }) {
+export default function AbaContent({ className, children }) {
 
     return (
         <>
-            <div className="aba-content prop flex">
-                {children}
-            </div>
+            <div className={"aba-content" + (className ? ` ${className}` : "")}>{children}</div>
         </>
     )
 }

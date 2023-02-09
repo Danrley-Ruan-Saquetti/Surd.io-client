@@ -1,4 +1,4 @@
-@import "base";
+@use '../global' as *;
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +15,7 @@ body {
     font-size: 1.6rem;
     user-select: none;
     -webkit-user-select: none;
-    background-color: var(--bg-primary-color);
+    background-color: $neutro-color;
 }
 
 body * {
@@ -30,4 +30,80 @@ main {
 #root {
     width: 100%;
     height: 100%;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+    outline: none;
+}
+
+button,
+input,
+select,
+textarea {
+    background: transparent;
+}
+
+button,
+input {
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+textarea {
+    resize: none;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+.props {
+    &.pd-0 {
+        padding: 0;
+    }
+    &.c-df {
+        cursor: default;
+    }
+    &.cu-po {
+        cursor: pointer;
+    }
+    &.flex {
+        display: flex;
+        &.cl {
+            flex-direction: column;
+        }
+        &.jc-end {
+            justify-content: end;
+        }
+    }
+    &.fs {
+        &.pq {
+            font-size: 1.2rem;
+        }
+        &.md {
+            font-size: 1.6rem;
+        }
+        &.gd {
+            font-size: 1.8rem;
+        }
+        &.lg {
+            font-size: 2rem;
+        }
+        &.bg {
+            font-size: 2.4rem;
+        }
+        &.mg {
+            font-size: 2.8rem;
+        }
+    }
 }

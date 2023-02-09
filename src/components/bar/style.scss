@@ -1,0 +1,9 @@
+@use "../../global" as *;
+.bar {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    border-radius: $border-radius;
+    background-color: $primary-color-lightness;
+    overflow: hidden;
+}

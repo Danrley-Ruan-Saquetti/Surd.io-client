@@ -1,4 +1,4 @@
-import "./style.css"
+import "./style.scss"
 
 export default function Form({ className, children }) {
 

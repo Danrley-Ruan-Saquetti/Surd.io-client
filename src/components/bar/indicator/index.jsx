@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react"
-import "./style.css"
+import { useEffect } from "react"
+import "./style.scss"
 
-export default function IndicatorBar({ className = "", valueMax = 0, value = 0 }) {
-    const [indicator, setIndicator] = useState(0)
+export default function IndicatorBar({ id = "", className, valueMax = 0, value = 0 }) {
 
     const calculateIndicator = () => {
-        setIndicator((value * 100) / valueMax)
+        return (value * 100) / valueMax
+    }
+
+    const renderXpIndicator = () => {
+        if (document.getElementById(id)) {
+            document.getElementById(id).style.width = `${calculateIndicator()}%`
+        }
     }
 
     useEffect(() => {
-        calculateIndicator()
-    }, [])
+        renderXpIndicator()
+    }, [value, valueMax])
 
     return (
         <>
-            <div style={{ width: `${indicator}%` }} className={"indicator-bar " + className}></div>
+            <div id={id} className={"indicator-bar" + (className ? ` ${className}` : "")}></div>
         </>
     )
 }

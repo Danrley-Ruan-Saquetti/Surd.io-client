@@ -1,0 +1,51 @@
+$darkness-ammount: 20;
+$lightness-ammount: 20;
+// Colors
+$neutro-color: #ebebeb;
+$primary-color: #6b6b6b;
+$primary-color-darkness: darken( $primary-color, $darkness-ammount);
+$primary-color-lightness: lighten( $primary-color, $lightness-ammount);
+$secondary-color: darken( $neutro-color, $lightness-ammount);
+$tertiary-color: #00000033;
+$quaternary-color: #ffee00;
+$quintinary-color: #050505;
+// Backgrounds
+$bg-component-color: #fff;
+// Texts
+$text-primary-color: #000;
+$text-secondary-color: #fff;
+$text-tertiary-color: #3a3a3a;
+// Alerts
+$alert-success-color: #45bd47;
+$alert-success-color-darkness: darken( $alert-success-color, $darkness-ammount);
+$alert-success-color-lightness: lighten( $alert-success-color, $lightness-ammount);
+$alert-danger-color: #ff0000;
+$alert-danger-color-darkness: darken( $alert-danger-color, $darkness-ammount);
+$alert-danger-color-lightness: lighten( $alert-danger-color, $lightness-ammount - 10);
+// Templates
+$border-radius: .3rem;
+$box-shadow-rgba: rgba(0, 0, 0, .3);
+$border: 1px solid $secondary-color;
+$transition-color: .3s;
+@mixin transitionColor {
+    &:hover {
+        background-color: $primary-color-lightness;
+        color: $text-secondary-color;
+    }
+    &:active {
+        background-color: $primary-color-darkness;
+        color: $text-secondary-color;
+    }
+    &.active {
+        background-color: $primary-color;
+        color: $text-secondary-color;
+        &:hover {
+            background-color: $primary-color-lightness;
+            color: $text-secondary-color;
+        }
+        &:active {
+            background-color: $primary-color-darkness;
+            color: $text-secondary-color;
+        }
+    }
+}

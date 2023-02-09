@@ -1,7 +1,9 @@
 :root {
     // Pallet colors
-    --primary-color: #320061;
-    --secondary-color: #9845E6;
+    --primary-color: #6b6b6b;
+    --primary-color-darkness: darken( #6b6b6b, 50 * .15);
+    --primary-color-lightness: lighten( #6b6b6b, 40);
+    --secondary-color-lightness: #9845E6;
     --secondary-color-2: #9845E6;
     --tertiary-color: #7400E0;
     --quaternary-color: #401D61;
@@ -27,54 +29,4 @@
     --t-border-radius: .5rem;
     // Transitions
     --transition-color: .3s;
-}
-
-a,
-button,
-input,
-select,
-textarea {
-    outline: none;
-}
-
-button,
-input,
-select,
-textarea {
-    background: transparent;
-}
-
-button,
-input {
-    border: none;
-}
-
-button {
-    cursor: pointer;
-}
-
-textarea {
-    resize: none;
-    border: none;
-}
-
-a {
-    text-decoration: none;
-    color: #000;
-    cursor: pointer;
-}
-
-.prop {
-    &.pd-0 {
-        padding: 0;
-    }
-    &.c-df {
-        cursor: default;
-    }
-    &.flex {
-        display: flex;
-        &.cl {
-            flex-direction: column;
-        }
-    }
 }

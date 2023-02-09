@@ -1,10 +1,10 @@
-import "./style.css"
+import "./style.scss"
 
-export default function InputBox({ className = "", children }) {
+export default function InputBox({ className, children }) {
 
     return (
         <>
-            <div className={"input-box " + className}>{children}</div>
+            <div className={"input-box" + (className ? ` ${className}` : "")}>{children}</div>
         </>
     )
 }
